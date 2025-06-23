@@ -1,0 +1,10 @@
+{
+  "control_args": ["1", "--opt-mode=optN"],
+  "timeout_seconds": 60,
+  "base_encoding": "original_encoding.lp",
+  "input_file": "./input/days_1/input1.lp",
+  "heuristics_to_try_file": "heuristics_to_try.lp",
+  "heuristics_file": "promising_ones.lp",
+  "timings_output_dir": "../timings",
+  "runs": 1
+}
