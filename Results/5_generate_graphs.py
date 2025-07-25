@@ -11,6 +11,11 @@ from pathlib import Path
 plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
+def natural_sort_key(test_case):
+    """Funzione per ordinamento naturale dei test case (5_1, 5_2, ..., 5_9, 5_10)"""
+    days, input_num = test_case.split('_')
+    return (int(days), int(input_num))
+
 def load_and_preprocess_data(csv_file):
     df = pd.read_csv(csv_file)
     
@@ -32,8 +37,8 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
     """Crea bar charts per confrontare i costi tra due encoding"""
     df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
     
-    # Ordina per test_case per avere un ordine consistente
-    test_cases = sorted(df_filtered['test_case'].unique())
+    # Ordina per test_case usando ordinamento naturale
+    test_cases = sorted(df_filtered['test_case'].unique(), key=natural_sort_key)
     n_cases = len(test_cases)
     
     # Dividi in gruppi di 10
@@ -55,78 +60,153 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
         cost2_data = {encoding1: [], encoding2: []}
         case_labels = []
         
+        # Lista per tenere traccia delle differenze
+        cost1_differences = []
+        cost2_differences = []
+        
         for case in group_cases:
             case_labels.append(case)
-            for encoding in [encoding1, encoding2]:
-                case_data = df_filtered[(df_filtered['test_case'] == case) & 
-                                      (df_filtered['encoding_type'] == encoding)]
-                
-                if len(case_data) > 0 and not pd.isna(case_data.iloc[0]['cost_1']):
-                    cost1_data[encoding].append(case_data.iloc[0]['cost_1'])
-                    cost2_data[encoding].append(case_data.iloc[0]['cost_2'])
-                else:
-                    cost1_data[encoding].append(np.nan)
-                    cost2_data[encoding].append(np.nan)
+            
+            # Raccogli dati per entrambi gli encoding
+            case_data_enc1 = df_filtered[(df_filtered['test_case'] == case) & 
+                                        (df_filtered['encoding_type'] == encoding1)]
+            case_data_enc2 = df_filtered[(df_filtered['test_case'] == case) & 
+                                        (df_filtered['encoding_type'] == encoding2)]
+            
+            # Cost_1
+            cost1_enc1 = case_data_enc1.iloc[0]['cost_1'] if len(case_data_enc1) > 0 and not pd.isna(case_data_enc1.iloc[0]['cost_1']) else np.nan
+            cost1_enc2 = case_data_enc2.iloc[0]['cost_1'] if len(case_data_enc2) > 0 and not pd.isna(case_data_enc2.iloc[0]['cost_1']) else np.nan
+            
+            cost1_data[encoding1].append(cost1_enc1)
+            cost1_data[encoding2].append(cost1_enc2)
+            
+            # Cost_2
+            cost2_enc1 = case_data_enc1.iloc[0]['cost_2'] if len(case_data_enc1) > 0 and not pd.isna(case_data_enc1.iloc[0]['cost_2']) else np.nan
+            cost2_enc2 = case_data_enc2.iloc[0]['cost_2'] if len(case_data_enc2) > 0 and not pd.isna(case_data_enc2.iloc[0]['cost_2']) else np.nan
+            
+            cost2_data[encoding1].append(cost2_enc1)
+            cost2_data[encoding2].append(cost2_enc2)
+            
+            # Controlla differenze
+            cost1_diff = None
+            cost2_diff = None
+            
+            if not np.isnan(cost1_enc1) and not np.isnan(cost1_enc2):
+                if cost1_enc1 != cost1_enc2:
+                    cost1_diff = 'better' if cost1_enc2 < cost1_enc1 else 'worse'
+            
+            if not np.isnan(cost2_enc1) and not np.isnan(cost2_enc2):
+                if cost2_enc1 != cost2_enc2:
+                    cost2_diff = 'better' if cost2_enc2 < cost2_enc1 else 'worse'
+            
+            cost1_differences.append(cost1_diff)
+            cost2_differences.append(cost2_diff)
         
         # Grafico Cost_1
         ax1 = axes[group, 0]
         x = np.arange(len(case_labels))
         width = 0.35
         
-        bars1 = ax1.bar(x - width/2, cost1_data[encoding1], width, 
-                       label=encoding1, alpha=0.8, color='#1f77b4')
-        bars2 = ax1.bar(x + width/2, cost1_data[encoding2], width, 
-                       label=encoding2, alpha=0.8, color='#ff7f0e')
+        # Colori base
+        color1 = '#1f77b4'
+        color2 = '#ff7f0e'
         
-        ax1.set_xlabel('Test Case')
+        # Crea array di colori per evidenziare differenze
+        colors1 = [color1] * len(case_labels)
+        colors2 = []
+        for diff in cost1_differences:
+            if diff == 'better':
+                colors2.append('#2ca02c')  # Verde per miglioramento
+            elif diff == 'worse':
+                colors2.append('#d62728')  # Rosso per peggioramento
+            else:
+                colors2.append(color2)     # Arancione standard
+        
+        bars1 = ax1.bar(x - width/2, cost1_data[encoding1], width, 
+                       label=encoding1, alpha=0.8, color=colors1)
+        bars2 = ax1.bar(x + width/2, cost1_data[encoding2], width, 
+                       label=encoding2, alpha=0.8, color=colors2)
+        
         ax1.set_ylabel('Cost_1')
-        ax1.set_title(f'Cost_1 Comparison - Group {group + 1} (Lower is Better)')
+        if group == 0:
+            ax1.set_title('Cost_1')
         ax1.set_xticks(x)
         ax1.set_xticklabels(case_labels, rotation=45, ha='right')
-        ax1.legend()
+        
+        # Legenda semplificata con solo i due encoding
+        from matplotlib.patches import Patch
+        legend_elements = [
+            Patch(facecolor=color1, alpha=0.8, label=encoding1),
+            Patch(facecolor=color2, alpha=0.8, label=f'{encoding2} (same)'),
+            Patch(facecolor='#2ca02c', alpha=0.8, label=f'{encoding2} (better)'),
+            Patch(facecolor='#d62728', alpha=0.8, label=f'{encoding2} (worse)')
+        ]
+        ax1.legend(handles=legend_elements, fontsize=8)
         ax1.grid(True, alpha=0.3)
         
-        # Aggiungi valori sulle barre
-        for bar in bars1:
-            height = bar.get_height()
-            if not np.isnan(height):
-                ax1.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+        # Aggiungi valori sulle barre e asterischi per differenze
+        for i, (bar1, bar2, diff) in enumerate(zip(bars1, bars2, cost1_differences)):
+            height1 = bar1.get_height()
+            height2 = bar2.get_height()
+            
+            if not np.isnan(height1):
+                ax1.annotate(f'{height1:.0f}', xy=(bar1.get_x() + bar1.get_width() / 2, height1),
                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
-        
-        for bar in bars2:
-            height = bar.get_height()
-            if not np.isnan(height):
-                ax1.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+            
+            if not np.isnan(height2):
+                ax1.annotate(f'{height2:.0f}', xy=(bar2.get_x() + bar2.get_width() / 2, height2),
                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+                
+                # Aggiungi asterisco per differenze
+                if diff is not None:
+                    ax1.text(bar2.get_x() + bar2.get_width() / 2, height2 + max(cost1_data[encoding1] + cost1_data[encoding2]) * 0.05,
+                           '★', ha='center', va='bottom', fontsize=12, fontweight='bold',
+                           color='#2ca02c' if diff == 'better' else '#d62728')
         
         # Grafico Cost_2
         ax2 = axes[group, 1]
         
-        bars3 = ax2.bar(x - width/2, cost2_data[encoding1], width, 
-                       label=encoding1, alpha=0.8, color='#1f77b4')
-        bars4 = ax2.bar(x + width/2, cost2_data[encoding2], width, 
-                       label=encoding2, alpha=0.8, color='#ff7f0e')
+        # Colori per Cost_2
+        colors2_cost2 = []
+        for diff in cost2_differences:
+            if diff == 'better':
+                colors2_cost2.append('#2ca02c')  # Verde per miglioramento
+            elif diff == 'worse':
+                colors2_cost2.append('#d62728')  # Rosso per peggioramento
+            else:
+                colors2_cost2.append(color2)     # Arancione standard
         
-        ax2.set_xlabel('Test Case')
+        bars3 = ax2.bar(x - width/2, cost2_data[encoding1], width, 
+                       label=encoding1, alpha=0.8, color=colors1)
+        bars4 = ax2.bar(x + width/2, cost2_data[encoding2], width, 
+                       label=encoding2, alpha=0.8, color=colors2_cost2)
+        
         ax2.set_ylabel('Cost_2')
-        ax2.set_title(f'Cost_2 Comparison - Group {group + 1} (Lower is Better)')
+        if group == 0:
+            ax2.set_title('Cost_2')
         ax2.set_xticks(x)
         ax2.set_xticklabels(case_labels, rotation=45, ha='right')
-        ax2.legend()
+        ax2.legend(handles=legend_elements, fontsize=8)
         ax2.grid(True, alpha=0.3)
         
-        # Aggiungi valori sulle barre
-        for bar in bars3:
-            height = bar.get_height()
-            if not np.isnan(height):
-                ax2.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+        # Aggiungi valori sulle barre e asterischi per differenze
+        for i, (bar3, bar4, diff) in enumerate(zip(bars3, bars4, cost2_differences)):
+            height3 = bar3.get_height()
+            height4 = bar4.get_height()
+            
+            if not np.isnan(height3):
+                ax2.annotate(f'{height3:.0f}', xy=(bar3.get_x() + bar3.get_width() / 2, height3),
                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
-        
-        for bar in bars4:
-            height = bar.get_height()
-            if not np.isnan(height):
-                ax2.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+            
+            if not np.isnan(height4):
+                ax2.annotate(f'{height4:.0f}', xy=(bar4.get_x() + bar4.get_width() / 2, height4),
                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+                
+                # Aggiungi asterisco per differenze
+                if diff is not None:
+                    ax2.text(bar4.get_x() + bar4.get_width() / 2, height4 + max(cost2_data[encoding1] + cost2_data[encoding2]) * 0.05,
+                           '★', ha='center', va='bottom', fontsize=12, fontweight='bold',
+                           color='#2ca02c' if diff == 'better' else '#d62728')
     
     plt.tight_layout()
     return fig
@@ -134,7 +214,7 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
 def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
     """Crea line chart per confrontare i tempi di esecuzione"""
     df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
-    test_cases = sorted(df_filtered['test_case'].unique())
+    test_cases = sorted(df_filtered['test_case'].unique(), key=natural_sort_key)
     
     fig, ax = plt.subplots(1, 1, figsize=(16, 8))
     
