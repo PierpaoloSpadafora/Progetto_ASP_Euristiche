@@ -1,0 +1,5 @@
+config_id,input_file,base_encoding,run_number,cost_1,cost_2,elapsed_time,best_model_time,model_count,result_status,timed_out
+1,./input/days_3/input6.lp,original_encoding.lp,1,7,70,15.0256,9.9361,97,TIMEOUT,True
+2,./input/days_3/input6.lp,optimized_encoding.lp,1,7,70,15.0264,9.6395,97,TIMEOUT,True
+3,./input/days_5/input2.lp,original_encoding.lp,1,14,127,15.0397,13.3765,134,TIMEOUT,True
+4,./input/days_5/input2.lp,optimized_encoding.lp,1,90,35,15.037,14.6739,152,TIMEOUT,True

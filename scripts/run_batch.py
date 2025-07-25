@@ -6,13 +6,15 @@ import multiprocessing
 import csv
 import os
 
+TIMEOUT = 15
+
 def create_settings_configs():
     settings_configs = {
         1: {
             "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": 3600,
+            "timeout_seconds": TIMEOUT,
             "base_encoding": "original_encoding.lp",
-            "input_file": "./input/days_3/input2.lp",
+            "input_file": "./input/days_3/input6.lp",
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
@@ -20,9 +22,9 @@ def create_settings_configs():
         },
         2: {
             "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": 3600,
+            "timeout_seconds": TIMEOUT,
             "base_encoding": "optimized_encoding.lp",
-            "input_file": "./input/days_3/input2.lp",
+            "input_file": "./input/days_3/input6.lp",
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
@@ -30,9 +32,9 @@ def create_settings_configs():
         },
         3: {
             "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": 3600,
+            "timeout_seconds": TIMEOUT,
             "base_encoding": "original_encoding.lp",
-            "input_file": "./input/days_3/input5.lp",
+            "input_file": "./input/days_5/input2.lp",
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
@@ -40,9 +42,9 @@ def create_settings_configs():
         },
         4: {
             "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": 3600,
+            "timeout_seconds": TIMEOUT,
             "base_encoding": "optimized_encoding.lp",
-            "input_file": "./input/days_3/input5.lp",
+            "input_file": "./input/days_5/input2.lp",
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
@@ -77,22 +79,25 @@ def is_cost_better(cost1, cost2):
 
 def run_clingo_worker(input_data, encoding, control_args, timeout_seconds, shared_dict, lock):
     best_cost = None
+    best_model_time = None
     model_count = 0
     start_time = time.time()
     
     def on_model(model):
-        nonlocal best_cost, model_count
+        nonlocal best_cost, best_model_time, model_count
         model_count += 1
         current_cost = model.cost
+        elapsed = time.time() - start_time
         
         if best_cost is None or is_cost_better(current_cost, best_cost):
             best_cost = current_cost
+            best_model_time = elapsed
         
-        elapsed = time.time() - start_time
         print(f"Model {model_count}: Cost = {current_cost} (tempo: {elapsed:.2f}s)")
         
         with lock:
             shared_dict['best_cost'] = best_cost
+            shared_dict['best_model_time'] = best_model_time
             shared_dict['model_count'] = model_count
             shared_dict['elapsed_time'] = time.time() - start_time
         
@@ -110,6 +115,7 @@ def run_clingo_worker(input_data, encoding, control_args, timeout_seconds, share
         
         with lock:
             shared_dict['best_cost'] = best_cost
+            shared_dict['best_model_time'] = best_model_time
             shared_dict['elapsed_time'] = elapsed_time
             shared_dict['result_status'] = str(result)
             shared_dict['solver_stats'] = solver_stats
@@ -121,6 +127,7 @@ def run_clingo_worker(input_data, encoding, control_args, timeout_seconds, share
         print(f"Errore nel worker: {e}")
         with lock:
             shared_dict['best_cost'] = best_cost
+            shared_dict['best_model_time'] = best_model_time
             shared_dict['elapsed_time'] = time.time() - start_time
             shared_dict['result_status'] = "ERROR"
             shared_dict['solver_stats'] = {}
@@ -134,6 +141,7 @@ def run_clingo_with_timeout(input_data, encoding, timeout_seconds, control_args)
     lock = manager.Lock()
     
     shared_dict['best_cost'] = None
+    shared_dict['best_model_time'] = None
     shared_dict['model_count'] = 0
     shared_dict['elapsed_time'] = 0.0
     shared_dict['result_status'] = "UNKNOWN"
@@ -165,6 +173,7 @@ def run_clingo_with_timeout(input_data, encoding, timeout_seconds, control_args)
             result_data = {
                 'elapsed_time': elapsed_time,
                 'best_cost': shared_dict.get('best_cost', None),
+                'best_model_time': shared_dict.get('best_model_time', None),
                 'model_count': shared_dict.get('model_count', 0),
                 'result_status': "TIMEOUT",
                 'solver_stats': shared_dict.get('solver_stats', {}),
@@ -178,6 +187,7 @@ def run_clingo_with_timeout(input_data, encoding, timeout_seconds, control_args)
         result_data = {
             'elapsed_time': shared_dict.get('elapsed_time', time.time() - start_time),
             'best_cost': shared_dict.get('best_cost', None),
+            'best_model_time': shared_dict.get('best_model_time', None),
             'model_count': shared_dict.get('model_count', 0),
             'result_status': shared_dict.get('result_status', "NO_RESULT"),
             'solver_stats': shared_dict.get('solver_stats', {}),
@@ -225,6 +235,7 @@ def run_configuration(config, config_id):
         
         print(f"Tempo: {result['elapsed_time']:.4f}s")
         print(f"Miglior costo: {result['best_cost']}")
+        print(f"Tempo miglior modello: {result.get('best_model_time', 'N/A')}")
         print(f"Modelli trovati: {result['model_count']}")
         print(f"Status: {result['result_status']}")
         if result['timed_out']:
@@ -240,7 +251,7 @@ def save_results_to_csv(all_results, filename="results.csv"):
     
     fieldnames = [
         'config_id', 'input_file', 'base_encoding', 'run_number',
-        'cost_1', 'cost_2', 'elapsed_time', 'model_count',
+        'cost_1', 'cost_2', 'elapsed_time', 'best_model_time', 'model_count',
         'result_status', 'timed_out',
     ]
     
@@ -269,6 +280,7 @@ def save_results_to_csv(all_results, filename="results.csv"):
                 'cost_1': cost_1,
                 'cost_2': cost_2,
                 'elapsed_time': round(result['elapsed_time'], 4),
+                'best_model_time': round(result['best_model_time'], 4) if result.get('best_model_time') is not None else None,
                 'model_count': result['model_count'],
                 'result_status': result['result_status'],
                 'timed_out': result['timed_out'],

@@ -483,7 +483,7 @@ def main() -> None:
                         print(f"  Miglior costo: {combo_stats['best_cost']}")
                     results.append((list(combo), combo_stats))
     else:
-        print("Nessuna euristica trovata in promising_ones.lp")
+        print("Nessuna euristica trovata in 2_promising_ones.lp")
 
     write_to_timings(results, timings_file)
 
