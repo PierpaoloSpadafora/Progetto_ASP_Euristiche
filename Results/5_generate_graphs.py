@@ -339,18 +339,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print("\n" + "="*80)
-    print("TABELLA RIASSUNTIVA DELLE PERFORMANCE")
-    print("="*80)
-    print(summary_table.to_string(index=False))
-    
-    print(f"\nGrafici salvati in: {output_dir.absolute()}")
-    print("File generati:")
-    print("- comparison_original_vs_optimized.png")
-    print("- comparison_heuristic.png") 
-    print("- comprehensive_comparison.png")
-    print("- difficulty_analysis.png")
-    print("- performance_summary.csv")
-
-if __name__ == "__main__":
-    main()
