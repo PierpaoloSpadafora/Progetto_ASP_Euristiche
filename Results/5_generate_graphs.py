@@ -259,7 +259,8 @@ def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
             time_diff = None
             
             if not np.isnan(time_enc1) and not np.isnan(time_enc2):
-                if time_enc1 != time_enc2:
+                # Mostra stella solo se la differenza supera i 2 secondi
+                if abs(time_enc1 - time_enc2) > 2.0:
                     time_diff = 'better' if time_enc2 < time_enc1 else 'worse'
             
             time_differences.append(time_diff)
