@@ -13,9 +13,9 @@ NUMBER_OF_RUNS = 1
 def create_encodings():
     encodings = {
         1: "../scripts/original_encoding.lp",
-        #2: "../scripts/optimized_encoding.lp", 
-        #3: "../scripts/original_encoding_plus_heuristics.lp",
-        #4: "../scripts/optimized_encoding_plus_heuristics.lp"
+        2: "../scripts/optimized_encoding.lp", 
+        3: "../scripts/original_encoding_plus_heuristics.lp",
+        4: "../scripts/optimized_encoding_plus_heuristics.lp"
     }
     return encodings
 
@@ -23,9 +23,9 @@ def find_input_files():
     input_files = []
     patterns = [
         "../scripts/input/days_1/input*.lp",
-        #"../scripts/input/days_2/input*.lp", 
-        #"../scripts/input/days_3/input*.lp",
-        #"../scripts/input/days_5/input*.lp"
+        "../scripts/input/days_2/input*.lp", 
+        "../scripts/input/days_3/input*.lp",
+        "../scripts/input/days_5/input*.lp"
     ]
     
     for pattern in patterns:
