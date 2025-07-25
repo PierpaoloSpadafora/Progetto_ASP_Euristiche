@@ -50,6 +50,10 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
     
     fig.suptitle(f'{title_prefix} - Confronto Costi (Lower is Better)', fontsize=16, fontweight='bold')
     
+    # Colori fissi per i due encoding
+    color1 = '#1f77b4'  # Blu per il primo encoding
+    color2 = '#ff7f0e'  # Arancione per il secondo encoding
+    
     for group in range(n_groups):
         start_idx = group * 10
         end_idx = min(start_idx + 10, n_cases)
@@ -107,41 +111,16 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
         x = np.arange(len(case_labels))
         width = 0.35
         
-        # Colori base
-        color1 = '#1f77b4'
-        color2 = '#ff7f0e'
-        
-        # Crea array di colori per evidenziare differenze
-        colors1 = [color1] * len(case_labels)
-        colors2 = []
-        for diff in cost1_differences:
-            if diff == 'better':
-                colors2.append('#2ca02c')  # Verde per miglioramento
-            elif diff == 'worse':
-                colors2.append('#d62728')  # Rosso per peggioramento
-            else:
-                colors2.append(color2)     # Arancione standard
-        
         bars1 = ax1.bar(x - width/2, cost1_data[encoding1], width, 
-                       label=encoding1, alpha=0.8, color=colors1)
+                       label=encoding1, alpha=0.8, color=color1)
         bars2 = ax1.bar(x + width/2, cost1_data[encoding2], width, 
-                       label=encoding2, alpha=0.8, color=colors2)
+                       label=encoding2, alpha=0.8, color=color2)
         
         ax1.set_ylabel('Cost_1')
         if group == 0:
             ax1.set_title('Cost_1')
         ax1.set_xticks(x)
         ax1.set_xticklabels(case_labels, rotation=45, ha='right')
-        
-        # Legenda semplificata con solo i due encoding
-        from matplotlib.patches import Patch
-        legend_elements = [
-            Patch(facecolor=color1, alpha=0.8, label=encoding1),
-            Patch(facecolor=color2, alpha=0.8, label=f'{encoding2} (same)'),
-            Patch(facecolor='#2ca02c', alpha=0.8, label=f'{encoding2} (better)'),
-            Patch(facecolor='#d62728', alpha=0.8, label=f'{encoding2} (worse)')
-        ]
-        ax1.legend(handles=legend_elements, fontsize=8)
         ax1.grid(True, alpha=0.3)
         
         # Aggiungi valori sulle barre e asterischi per differenze
@@ -159,34 +138,24 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
                 
                 # Aggiungi asterisco per differenze
                 if diff is not None:
-                    ax1.text(bar2.get_x() + bar2.get_width() / 2, height2 + max(cost1_data[encoding1] + cost1_data[encoding2]) * 0.05,
+                    max_height = max([h for h in cost1_data[encoding1] + cost1_data[encoding2] if not np.isnan(h)])
+                    ax1.text(bar2.get_x() + bar2.get_width() / 2, height2 + max_height * 0.05,
                            '★', ha='center', va='bottom', fontsize=12, fontweight='bold',
                            color='#2ca02c' if diff == 'better' else '#d62728')
         
         # Grafico Cost_2
         ax2 = axes[group, 1]
         
-        # Colori per Cost_2
-        colors2_cost2 = []
-        for diff in cost2_differences:
-            if diff == 'better':
-                colors2_cost2.append('#2ca02c')  # Verde per miglioramento
-            elif diff == 'worse':
-                colors2_cost2.append('#d62728')  # Rosso per peggioramento
-            else:
-                colors2_cost2.append(color2)     # Arancione standard
-        
         bars3 = ax2.bar(x - width/2, cost2_data[encoding1], width, 
-                       label=encoding1, alpha=0.8, color=colors1)
+                       label=encoding1, alpha=0.8, color=color1)
         bars4 = ax2.bar(x + width/2, cost2_data[encoding2], width, 
-                       label=encoding2, alpha=0.8, color=colors2_cost2)
+                       label=encoding2, alpha=0.8, color=color2)
         
         ax2.set_ylabel('Cost_2')
         if group == 0:
             ax2.set_title('Cost_2')
         ax2.set_xticks(x)
         ax2.set_xticklabels(case_labels, rotation=45, ha='right')
-        ax2.legend(handles=legend_elements, fontsize=8)
         ax2.grid(True, alpha=0.3)
         
         # Aggiungi valori sulle barre e asterischi per differenze
@@ -204,11 +173,23 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
                 
                 # Aggiungi asterisco per differenze
                 if diff is not None:
-                    ax2.text(bar4.get_x() + bar4.get_width() / 2, height4 + max(cost2_data[encoding1] + cost2_data[encoding2]) * 0.05,
+                    max_height = max([h for h in cost2_data[encoding1] + cost2_data[encoding2] if not np.isnan(h)])
+                    ax2.text(bar4.get_x() + bar4.get_width() / 2, height4 + max_height * 0.05,
                            '★', ha='center', va='bottom', fontsize=12, fontweight='bold',
                            color='#2ca02c' if diff == 'better' else '#d62728')
     
+    # Aggiungi una singola legenda per tutta la figura
+    from matplotlib.patches import Patch
+    legend_elements = [
+        Patch(facecolor=color1, alpha=0.8, label=encoding1),
+        Patch(facecolor=color2, alpha=0.8, label=encoding2),
+        Patch(facecolor='#2ca02c', alpha=0.8, label=f'{encoding2} (better)'),
+        Patch(facecolor='#d62728', alpha=0.8, label=f'{encoding2} (worse)')
+    ]
+    fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 0.02), ncol=4, fontsize=10)
+    
     plt.tight_layout()
+    plt.subplots_adjust(bottom=0.1)  # Lascia spazio per la legenda
     return fig
 
 def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
@@ -255,7 +236,6 @@ def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
     ax.set_xticks(x[::2])  # Mostra ogni secondo label per evitare sovrapposizioni
     ax.set_xticklabels([case_labels[i] for i in range(0, len(case_labels), 2)], 
                       rotation=45, ha='right')
-    ax.legend()
     ax.grid(True, alpha=0.3)
     
     # Evidenzia quale encoding è più veloce per ogni caso
