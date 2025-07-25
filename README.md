@@ -10,15 +10,17 @@ I risultati sono nella [cartella timings](https://github.com/PierpaoloSpadafora/
 per eseguire il progetto:
 Attivare venv di clingo
 Path e argomenti sono in `settings,json`
+
 Eseguire i file in ordine:
 
-> `py brute_force_heuristics.py`
+> `py 1_brute_force_heuristics.py`
 
-Lo script crea `promising_ones.lp`
+Lo script legge `0_heuristics_to_try.lp`, splitta con una regex tutte le euristica contenute nel file, viene eseguito `original_encoding.lp` sul file di input specificato in `settings,json` per tracciare una baseline e poi viene rieseguita una run per ciascuna euristica estratta con le regex.
+Tutte le euristiche che riducono i tempi rispetto alla baseline vengono salvati in `2_promising_ones.lp`
 
-> `py combine_heuristics.py`
+> `py 3_combine_heuristics.py`
 
-Lo script prende le euristiche da `promising_ones.lp` e salva i risultati in `timings_{input_file_name}_.xlsx`
+Lo script prende le euristiche contenute in `1_promising_ones.lp`, ed esegue anche egli prima `original_encoding.lp` sul file di input specificato in `settings,json` per tracciare una baseline e poi tutte le combinazioni possibili con le euristiche trovate nel file, per vedere se più euristiche insieme possono essere più o meno promettenti e salva i risultati in `timings_{input_file_name}_.xlsx`
 
 ---
 
