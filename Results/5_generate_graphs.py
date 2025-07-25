@@ -35,11 +35,30 @@ def load_and_preprocess_data(csv_file):
 
 def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
     """Crea bar charts per confrontare i costi tra due encoding"""
+    # Verifica che entrambi gli encoding esistano nei dati
+    available_encodings = df['encoding_type'].unique()
+    if encoding1 not in available_encodings:
+        print(f"Warning: Encoding '{encoding1}' non trovato nei dati. Disponibili: {available_encodings}")
+        return None
+    if encoding2 not in available_encodings:
+        print(f"Warning: Encoding '{encoding2}' non trovato nei dati. Disponibili: {available_encodings}")
+        return None
+    
     df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
+    
+    # Verifica che ci siano dati dopo il filtro
+    if len(df_filtered) == 0:
+        print(f"Warning: Nessun dato trovato per gli encoding '{encoding1}' e '{encoding2}'")
+        return None
     
     # Ordina per test_case usando ordinamento naturale
     test_cases = sorted(df_filtered['test_case'].unique(), key=natural_sort_key)
     n_cases = len(test_cases)
+    
+    # Verifica che ci siano test case
+    if n_cases == 0:
+        print(f"Warning: Nessun test case trovato per gli encoding '{encoding1}' e '{encoding2}'")
+        return None
     
     # Dividi in gruppi di 10
     n_groups = (n_cases + 9) // 10  # Ceiling division
@@ -201,11 +220,30 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
 
 def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
     """Crea bar chart per confrontare i tempi di esecuzione tra due encoding"""
+    # Verifica che entrambi gli encoding esistano nei dati
+    available_encodings = df['encoding_type'].unique()
+    if encoding1 not in available_encodings:
+        print(f"Warning: Encoding '{encoding1}' non trovato nei dati. Disponibili: {available_encodings}")
+        return None
+    if encoding2 not in available_encodings:
+        print(f"Warning: Encoding '{encoding2}' non trovato nei dati. Disponibili: {available_encodings}")
+        return None
+    
     df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
+    
+    # Verifica che ci siano dati dopo il filtro
+    if len(df_filtered) == 0:
+        print(f"Warning: Nessun dato trovato per gli encoding '{encoding1}' e '{encoding2}'")
+        return None
     
     # Ordina per test_case usando ordinamento naturale
     test_cases = sorted(df_filtered['test_case'].unique(), key=natural_sort_key)
     n_cases = len(test_cases)
+    
+    # Verifica che ci siano test case
+    if n_cases == 0:
+        print(f"Warning: Nessun test case trovato per gli encoding '{encoding1}' e '{encoding2}'")
+        return None
     
     # Dividi in gruppi di 10
     n_groups = (n_cases + 9) // 10  # Ceiling division
@@ -418,56 +456,64 @@ def main():
     # 1. Confronto costi Original vs Optimized
     print("Generando confronto costi Original vs Optimized...")
     fig1 = create_cost_comparison_charts(df, 'original', 'optimized', "Original vs Optimized")
-    fig1.savefig(output_dir / 'cost_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
-    plt.close(fig1)
+    if fig1 is not None:
+        fig1.savefig(output_dir / 'cost_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
+        plt.close(fig1)
     
     # 2. Confronto costi con euristiche
     print("Generando confronto costi con euristiche...")
     fig2 = create_cost_comparison_charts(df, 'original_plus_heuristic', 'optimized_plus_heuristic', 
                                         "Original+Heuristic vs Optimized+Heuristic")
-    fig2.savefig(output_dir / 'cost_comparison_heuristic.png', dpi=300, bbox_inches='tight')
-    plt.close(fig2)
+    if fig2 is not None:
+        fig2.savefig(output_dir / 'cost_comparison_heuristic.png', dpi=300, bbox_inches='tight')
+        plt.close(fig2)
     
     # 3. Confronto costi Original vs Original+Heuristic
     print("Generando confronto costi Original vs Original+Heuristic...")
     fig3 = create_cost_comparison_charts(df, 'original', 'original_plus_heuristic', 
                                         "Original vs Original+Heuristic")
-    fig3.savefig(output_dir / 'cost_comparison_original_vs_original_heuristic.png', dpi=300, bbox_inches='tight')
-    plt.close(fig3)
+    if fig3 is not None:
+        fig3.savefig(output_dir / 'cost_comparison_original_vs_original_heuristic.png', dpi=300, bbox_inches='tight')
+        plt.close(fig3)
     
     # 4. Confronto costi Optimized vs Optimized+Heuristic
     print("Generando confronto costi Optimized vs Optimized+Heuristic...")
     fig4 = create_cost_comparison_charts(df, 'optimized', 'optimized_plus_heuristic', 
                                         "Optimized vs Optimized+Heuristic")
-    fig4.savefig(output_dir / 'cost_comparison_optimized_vs_optimized_heuristic.png', dpi=300, bbox_inches='tight')
-    plt.close(fig4)
+    if fig4 is not None:
+        fig4.savefig(output_dir / 'cost_comparison_optimized_vs_optimized_heuristic.png', dpi=300, bbox_inches='tight')
+        plt.close(fig4)
     
     # 5. Confronto tempi Original vs Optimized
     print("Generando confronto tempi Original vs Optimized...")
     fig5 = create_time_comparison_chart(df, 'original', 'optimized', "Original vs Optimized")
-    fig5.savefig(output_dir / 'time_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
-    plt.close(fig5)
+    if fig5 is not None:
+        fig5.savefig(output_dir / 'time_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
+        plt.close(fig5)
     
     # 6. Confronto tempi con euristiche
     print("Generando confronto tempi con euristiche...")
     fig6 = create_time_comparison_chart(df, 'original_plus_heuristic', 'optimized_plus_heuristic', 
                                        "Original+Heuristic vs Optimized+Heuristic")
-    fig6.savefig(output_dir / 'time_comparison_heuristic.png', dpi=300, bbox_inches='tight')
-    plt.close(fig6)
+    if fig6 is not None:
+        fig6.savefig(output_dir / 'time_comparison_heuristic.png', dpi=300, bbox_inches='tight')
+        plt.close(fig6)
     
     # 7. Confronto tempi Original vs Original+Heuristic
     print("Generando confronto tempi Original vs Original+Heuristic...")
     fig7 = create_time_comparison_chart(df, 'original', 'original_plus_heuristic', 
                                        "Original vs Original+Heuristic")
-    fig7.savefig(output_dir / 'time_comparison_original_vs_original_heuristic.png', dpi=300, bbox_inches='tight')
-    plt.close(fig7)
+    if fig7 is not None:
+        fig7.savefig(output_dir / 'time_comparison_original_vs_original_heuristic.png', dpi=300, bbox_inches='tight')
+        plt.close(fig7)
     
     # 8. Confronto tempi Optimized vs Optimized+Heuristic
     print("Generando confronto tempi Optimized vs Optimized+Heuristic...")
     fig8 = create_time_comparison_chart(df, 'optimized', 'optimized_plus_heuristic', 
                                        "Optimized vs Optimized+Heuristic")
-    fig8.savefig(output_dir / 'time_comparison_optimized_vs_optimized_heuristic.png', dpi=300, bbox_inches='tight')
-    plt.close(fig8)
+    if fig8 is not None:
+        fig8.savefig(output_dir / 'time_comparison_optimized_vs_optimized_heuristic.png', dpi=300, bbox_inches='tight')
+        plt.close(fig8)
     
     # 9. Tabella riassuntiva
     print("Generando tabella riassuntiva...")

@@ -1,5 +1,5 @@
 Encoding,Test Totali,Successi,Tasso Successo (%),Cost_1 Medio,Cost_2 Medio,Tempo Miglior Modello (s),Modelli Medi
-original,40,40,100.0,36.17,44.17,7.016,86.8
-optimized,40,40,100.0,28.25,51.60,6.930,87.5
-original_plus_heuristic,40,13,32.5,9.54,27.15,6.084,16.2
-optimized_plus_heuristic,40,14,35.0,11.79,26.50,6.321,17.7
+original,40,20,50.0,14.70,25.65,0.754,25.1
+optimized,40,20,50.0,14.50,25.50,0.745,25.4
+original_plus_heuristic,40,0,0.0,N/A,N/A,N/A,0.0
+optimized_plus_heuristic,40,0,0.0,N/A,N/A,N/A,0.0

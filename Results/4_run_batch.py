@@ -7,7 +7,7 @@ import csv
 import os
 import glob
 
-TIMEOUT = 10
+TIMEOUT = 300
 NUMBER_OF_RUNS = 1
 
 def create_encodings():
