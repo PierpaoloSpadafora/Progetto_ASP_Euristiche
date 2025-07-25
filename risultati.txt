@@ -1,9 +1,0 @@
-input_file,base_encoding,run_number,cost_1,cost_2,elapsed_time,model_count,result_status,timed_out
-./input/days_3/input2.lp,original_encoding.lp,1,15,60,3600.2063,121,TIMEOUT,True
-./input/days_3/input2.lp,optimized_encoding.lp,1,15,60,3600.0633,121,TIMEOUT,True
-./input/days_3/input5.lp,original_encoding.lp,1,11,71,3600.2201,203,TIMEOUT,True
-./input/days_3/input5.lp,optimized_encoding.lp,1,11,71,3600.1223,203,TIMEOUT,True
-
-
-testato original e optimized sui file input_2 e input_5 del day3 dandogli 1 ora di timeout a ciascuna esecuzione ma nessuno dei due ha trovato l'ottimo 
-(tuttavia il miglior modello trovato fino ad allora era lo stesso)
