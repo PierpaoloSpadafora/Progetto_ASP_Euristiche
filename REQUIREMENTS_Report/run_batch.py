@@ -33,7 +33,7 @@ def create_settings_configs():
         3: {
             "control_args": ["1", "--opt-mode=optN"],
             "timeout_seconds": TIMEOUT,
-            "base_encoding": "original_encoding.lp",
+            "base_encoding": "original_encoding_plus_heuristics.lp",
             "input_file": "./input/days_5/input2.lp",
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
@@ -43,7 +43,7 @@ def create_settings_configs():
         4: {
             "control_args": ["1", "--opt-mode=optN"],
             "timeout_seconds": TIMEOUT,
-            "base_encoding": "optimized_encoding.lp",
+            "base_encoding": "optimized_encoding_plus_heuristics.lp.lp",
             "input_file": "./input/days_5/input2.lp",
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
@@ -250,8 +250,8 @@ def save_results_to_csv(all_results, filename="../REQUIREMENTS_Report/results.cs
         return
     
     fieldnames = [
-        'config_id', 'input_file', 'base_encoding', 'run_number',
-        'cost_1', 'cost_2', 'elapsed_time', 'best_model_time', 'model_count',
+        'input_file', 'base_encoding',
+        'cost_1', 'cost_2', 'best_model_time', 'total_elapsed_time', 'model_count',
         'result_status', 'timed_out',
     ]
     
@@ -273,14 +273,12 @@ def save_results_to_csv(all_results, filename="../REQUIREMENTS_Report/results.cs
                     cost_1 = cost
             
             row = {
-                'config_id': result['config_id'],
                 'input_file': result['input_file'],
                 'base_encoding': f"{result['base_encoding']}",
-                'run_number': result['run_number'],
                 'cost_1': cost_1,
                 'cost_2': cost_2,
-                'elapsed_time': round(result['elapsed_time'], 4),
                 'best_model_time': round(result['best_model_time'], 4) if result.get('best_model_time') is not None else None,
+                'total_elapsed_time': round(result['elapsed_time'], 4),
                 'model_count': result['model_count'],
                 'result_status': result['result_status'],
                 'timed_out': result['timed_out'],
