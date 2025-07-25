@@ -82,7 +82,6 @@ ed eseguite insieme all' `original_encoding.lp` + ciascuno dei 40 file di input,
 - In tutti i casi in cui viene trovato un minimo globale entro lo scadere del timeout, le configurazioni con euristiche sono più veloci rispetto al baseline
 - Sembra che le euristiche migliorino il tempo di risoluzione per trovare il minimo globale, ma in genere non migliorino o perfino peggiorano il tempo di risoluzione per trovare il primo AS con costo minimo.
 
-
 Per trarre delle conclusioni più dettagliate ho deciso di provare ad eseguire sia `origina_encoding.lp` che `optimized_encoding.lp` su tutti i file di input con 180 secondi di timer e poi sia `original_encoding_plus_heuristics.lp` che `optimized_encoding_plus_heuristics.lp` che sono gli stessi script ma con l'aggiunta di una singola euristica, quella che dai dati sembra la più efficiente di tutte.
 
-Dopo un totale di 8 ore di esecuzione, ho ottenuto i seguenti risultati
+Dopo un totale di **INSERIRE ORE** di esecuzione, ho ottenuto i seguenti risultati
