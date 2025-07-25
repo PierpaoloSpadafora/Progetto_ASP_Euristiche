@@ -17,8 +17,8 @@ def load_and_preprocess_data(csv_file):
     df['encoding_type'] = df['base_encoding'].apply(lambda x: 
         'original' if 'original_encoding.lp' in x 
         else 'optimized' if 'optimized_encoding.lp' in x
-        else 'original_plus_heuristics' if 'original_encoding_plus_heuristics.lp' in x
-        else 'optimized_plus_heuristics')
+        else 'original_plus_heuristic' if 'original_encoding_plus_heuristic.lp' in x
+        else 'optimized_plus_heuristic')
     
     df['days'] = df['input_file'].str.extract(r'days_(\d+)').astype(int)
     
@@ -28,190 +28,173 @@ def load_and_preprocess_data(csv_file):
     
     return df
 
-def calculate_ranking_score(row):
-    if pd.isna(row['cost_1']):
-        return float('inf') 
-    
-    cost_1_norm = row['cost_1'] * 1000  # Peso maggiore per cost_1
-    cost_2_norm = row['cost_2'] * 1    # Peso medio per cost_2
-    time_norm = row['best_model_time'] if not pd.isna(row['best_model_time']) else 3.0
-    
-    return cost_1_norm + cost_2_norm + time_norm
-
-def compare_encodings_basic(df, encoding1, encoding2, title_suffix=""):
+def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
+    """Crea bar charts per confrontare i costi tra due encoding"""
     df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
     
-    fig, axes = plt.subplots(2, 2, figsize=(15, 12))
-    fig.suptitle(f'Confronto {encoding1} vs {encoding2} {title_suffix}', fontsize=16, fontweight='bold')
+    # Ordina per test_case per avere un ordine consistente
+    test_cases = sorted(df_filtered['test_case'].unique())
+    n_cases = len(test_cases)
     
-    ax1 = axes[0, 0]
-    for encoding in [encoding1, encoding2]:
-        data = df_filtered[df_filtered['encoding_type'] == encoding]
-        avg_cost1_by_days = data.groupby('days')['cost_1'].mean()
-        ax1.plot(avg_cost1_by_days.index, avg_cost1_by_days.values, 
-                marker='o', linewidth=2, label=encoding)
+    # Dividi in gruppi di 10
+    n_groups = (n_cases + 9) // 10  # Ceiling division
     
-    ax1.set_xlabel('Giorni')
-    ax1.set_ylabel('Cost_1 medio')
-    ax1.set_title('Cost_1 medio per numero di giorni')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
+    fig, axes = plt.subplots(n_groups, 2, figsize=(16, 4 * n_groups))
+    if n_groups == 1:
+        axes = axes.reshape(1, -1)
     
-    ax2 = axes[0, 1]
-    for encoding in [encoding1, encoding2]:
-        data = df_filtered[df_filtered['encoding_type'] == encoding]
-        valid_times = data.dropna(subset=['best_model_time'])
-        avg_time_by_days = valid_times.groupby('days')['best_model_time'].mean()
-        ax2.plot(avg_time_by_days.index, avg_time_by_days.values, 
-                marker='s', linewidth=2, label=encoding)
+    fig.suptitle(f'{title_prefix} - Confronto Costi (Lower is Better)', fontsize=16, fontweight='bold')
     
-    ax2.set_xlabel('Giorni')
-    ax2.set_ylabel('Best Model Time medio (s)')
-    ax2.set_title('Tempo medio per trovare il miglior modello')
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
-    
-    ax3 = axes[1, 0]
-    cost1_data = []
-    labels = []
-    for encoding in [encoding1, encoding2]:
-        data = df_filtered[df_filtered['encoding_type'] == encoding]['cost_1'].dropna()
-        cost1_data.append(data)
-        labels.append(encoding)
-    
-    ax3.boxplot(cost1_data, labels=labels)
-    ax3.set_ylabel('Cost_1')
-    ax3.set_title('Distribuzione Cost_1')
-    ax3.grid(True, alpha=0.3)
-    
-    ax4 = axes[1, 1]
-    for encoding in [encoding1, encoding2]:
-        data = df_filtered[df_filtered['encoding_type'] == encoding]
-        valid_data = data.dropna(subset=['cost_1', 'cost_2'])
-        ax4.scatter(valid_data['cost_1'], valid_data['cost_2'], 
-                   alpha=0.6, s=50, label=encoding)
-    
-    ax4.set_xlabel('Cost_1')
-    ax4.set_ylabel('Cost_2')
-    ax4.set_title('Cost_1 vs Cost_2')
-    ax4.legend()
-    ax4.grid(True, alpha=0.3)
+    for group in range(n_groups):
+        start_idx = group * 10
+        end_idx = min(start_idx + 10, n_cases)
+        group_cases = test_cases[start_idx:end_idx]
+        
+        # Prepara dati per il gruppo corrente
+        cost1_data = {encoding1: [], encoding2: []}
+        cost2_data = {encoding1: [], encoding2: []}
+        case_labels = []
+        
+        for case in group_cases:
+            case_labels.append(case)
+            for encoding in [encoding1, encoding2]:
+                case_data = df_filtered[(df_filtered['test_case'] == case) & 
+                                      (df_filtered['encoding_type'] == encoding)]
+                
+                if len(case_data) > 0 and not pd.isna(case_data.iloc[0]['cost_1']):
+                    cost1_data[encoding].append(case_data.iloc[0]['cost_1'])
+                    cost2_data[encoding].append(case_data.iloc[0]['cost_2'])
+                else:
+                    cost1_data[encoding].append(np.nan)
+                    cost2_data[encoding].append(np.nan)
+        
+        # Grafico Cost_1
+        ax1 = axes[group, 0]
+        x = np.arange(len(case_labels))
+        width = 0.35
+        
+        bars1 = ax1.bar(x - width/2, cost1_data[encoding1], width, 
+                       label=encoding1, alpha=0.8, color='#1f77b4')
+        bars2 = ax1.bar(x + width/2, cost1_data[encoding2], width, 
+                       label=encoding2, alpha=0.8, color='#ff7f0e')
+        
+        ax1.set_xlabel('Test Case')
+        ax1.set_ylabel('Cost_1')
+        ax1.set_title(f'Cost_1 Comparison - Group {group + 1} (Lower is Better)')
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(case_labels, rotation=45, ha='right')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+        
+        # Aggiungi valori sulle barre
+        for bar in bars1:
+            height = bar.get_height()
+            if not np.isnan(height):
+                ax1.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                           xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+        
+        for bar in bars2:
+            height = bar.get_height()
+            if not np.isnan(height):
+                ax1.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                           xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+        
+        # Grafico Cost_2
+        ax2 = axes[group, 1]
+        
+        bars3 = ax2.bar(x - width/2, cost2_data[encoding1], width, 
+                       label=encoding1, alpha=0.8, color='#1f77b4')
+        bars4 = ax2.bar(x + width/2, cost2_data[encoding2], width, 
+                       label=encoding2, alpha=0.8, color='#ff7f0e')
+        
+        ax2.set_xlabel('Test Case')
+        ax2.set_ylabel('Cost_2')
+        ax2.set_title(f'Cost_2 Comparison - Group {group + 1} (Lower is Better)')
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(case_labels, rotation=45, ha='right')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3)
+        
+        # Aggiungi valori sulle barre
+        for bar in bars3:
+            height = bar.get_height()
+            if not np.isnan(height):
+                ax2.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                           xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+        
+        for bar in bars4:
+            height = bar.get_height()
+            if not np.isnan(height):
+                ax2.annotate(f'{height:.0f}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                           xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
     
     plt.tight_layout()
     return fig
 
-def compare_heuristics(df):
-    heuristic_encodings = ['original_plus_heuristics', 'optimized_plus_heuristics']
-    return compare_encodings_basic(df, heuristic_encodings[0], heuristic_encodings[1], 
-                                 "(con Euristiche)")
-
-def create_comprehensive_comparison(df):
-    fig, axes = plt.subplots(2, 3, figsize=(18, 12))
-    fig.suptitle('Confronto Completo di Tutti gli Encoding', fontsize=16, fontweight='bold')
+def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
+    """Crea line chart per confrontare i tempi di esecuzione"""
+    df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
+    test_cases = sorted(df_filtered['test_case'].unique())
     
-    encodings = ['original', 'optimized', 'original_plus_heuristics', 'optimized_plus_heuristics']
-    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+    fig, ax = plt.subplots(1, 1, figsize=(16, 8))
     
-    # 1. Cost_1 medio per giorni
-    ax1 = axes[0, 0]
-    for i, encoding in enumerate(encodings):
-        data = df[df['encoding_type'] == encoding]
-        avg_cost1_by_days = data.groupby('days')['cost_1'].mean()
-        ax1.plot(avg_cost1_by_days.index, avg_cost1_by_days.values, 
-                marker='o', linewidth=2, label=encoding, color=colors[i])
+    times1 = []
+    times2 = []
+    case_labels = []
     
-    ax1.set_xlabel('Giorni')
-    ax1.set_ylabel('Cost_1 medio')
-    ax1.set_title('Cost_1 medio per numero di giorni')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
+    for case in test_cases:
+        case_labels.append(case)
+        
+        # Dati per encoding1
+        case_data1 = df_filtered[(df_filtered['test_case'] == case) & 
+                                (df_filtered['encoding_type'] == encoding1)]
+        if len(case_data1) > 0 and not pd.isna(case_data1.iloc[0]['best_model_time']):
+            times1.append(case_data1.iloc[0]['best_model_time'])
+        else:
+            times1.append(np.nan)
+        
+        # Dati per encoding2
+        case_data2 = df_filtered[(df_filtered['test_case'] == case) & 
+                                (df_filtered['encoding_type'] == encoding2)]
+        if len(case_data2) > 0 and not pd.isna(case_data2.iloc[0]['best_model_time']):
+            times2.append(case_data2.iloc[0]['best_model_time'])
+        else:
+            times2.append(np.nan)
     
-    # 2. Best Model Time medio
-    ax2 = axes[0, 1]
-    for i, encoding in enumerate(encodings):
-        data = df[df['encoding_type'] == encoding]
-        valid_times = data.dropna(subset=['best_model_time'])
-        avg_time_by_days = valid_times.groupby('days')['best_model_time'].mean()
-        ax2.plot(avg_time_by_days.index, avg_time_by_days.values, 
-                marker='s', linewidth=2, label=encoding, color=colors[i])
+    x = np.arange(len(case_labels))
     
-    ax2.set_xlabel('Giorni')
-    ax2.set_ylabel('Best Model Time medio (s)')
-    ax2.set_title('Tempo medio per trovare il miglior modello')
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
+    # Line plot
+    ax.plot(x, times1, marker='o', linewidth=2, markersize=6, 
+           label=encoding1, color='#1f77b4')
+    ax.plot(x, times2, marker='s', linewidth=2, markersize=6, 
+           label=encoding2, color='#ff7f0e')
     
-    # 3. Percentuale di successo (trovare almeno una soluzione)
-    ax3 = axes[0, 2]
-    success_rates = []
-    for encoding in encodings:
-        data = df[df['encoding_type'] == encoding]
-        success_rate = (data['cost_1'].notna().sum() / len(data)) * 100
-        success_rates.append(success_rate)
+    ax.set_xlabel('Test Case')
+    ax.set_ylabel('Best Model Time (seconds)')
+    ax.set_title(f'{title_prefix} - Confronto Tempi di Esecuzione')
+    ax.set_xticks(x[::2])  # Mostra ogni secondo label per evitare sovrapposizioni
+    ax.set_xticklabels([case_labels[i] for i in range(0, len(case_labels), 2)], 
+                      rotation=45, ha='right')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
     
-    bars = ax3.bar(encodings, success_rates, color=colors)
-    ax3.set_ylabel('Percentuale di successo (%)')
-    ax3.set_title('Percentuale di test con soluzione trovata')
-    ax3.set_xticklabels(encodings, rotation=45, ha='right')
+    # Evidenzia quale encoding è più veloce per ogni caso
+    for i, (t1, t2) in enumerate(zip(times1, times2)):
+        if not np.isnan(t1) and not np.isnan(t2):
+            if t1 < t2:
+                ax.scatter(i, t1, color='green', s=100, marker='*', zorder=5)
+            elif t2 < t1:
+                ax.scatter(i, t2, color='green', s=100, marker='*', zorder=5)
     
-    # Aggiungi valori sulle barre
-    for bar, rate in zip(bars, success_rates):
-        height = bar.get_height()
-        ax3.annotate(f'{rate:.1f}%', xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3), textcoords="offset points", ha='center', va='bottom')
-    
-    # 4. Heatmap delle performance per difficoltà
-    ax4 = axes[1, 0]
-    
-    ranking_data = []
-    for days in sorted(df['days'].unique()):
-        day_scores = []
-        for encoding in encodings:
-            data = df[(df['encoding_type'] == encoding) & (df['days'] == days)]
-            scores = data.apply(calculate_ranking_score, axis=1)
-            avg_score = scores.mean() if len(scores) > 0 else float('inf')
-            day_scores.append(avg_score if avg_score != float('inf') else np.nan)
-        ranking_data.append(day_scores)
-    
-    ranking_matrix = np.array(ranking_data)
-    im = ax4.imshow(ranking_matrix, cmap='RdYlGn_r', aspect='auto')
-    ax4.set_xticks(range(len(encodings)))
-    ax4.set_xticklabels(encodings, rotation=45, ha='right')
-    ax4.set_yticks(range(len(df['days'].unique())))
-    ax4.set_yticklabels([f'{d} giorni' for d in sorted(df['days'].unique())])
-    ax4.set_title('Heatmap Performance\n(scuro = migliore)')
-    
-    # 5. Modelli trovati per encoding
-    ax5 = axes[1, 1]
-    model_counts = []
-    for encoding in encodings:
-        data = df[df['encoding_type'] == encoding]
-        avg_models = data['model_count'].mean()
-        model_counts.append(avg_models)
-    
-    bars = ax5.bar(encodings, model_counts, color=colors)
-    ax5.set_ylabel('Numero medio di modelli')
-    ax5.set_title('Numero medio di modelli trovati')
-    ax5.set_xticklabels(encodings, rotation=45, ha='right')
-    
-    # 6. Violin plot per Cost_1
-    ax6 = axes[1, 2]
-    cost1_data = []
-    for encoding in encodings:
-        data = df[df['encoding_type'] == encoding]['cost_1'].dropna()
-        cost1_data.append(data)
-    
-    parts = ax6.violinplot(cost1_data, positions=range(len(encodings)), showmeans=True)
-    ax6.set_xticks(range(len(encodings)))
-    ax6.set_xticklabels(encodings, rotation=45, ha='right')
-    ax6.set_ylabel('Cost_1')
-    ax6.set_title('Distribuzione Cost_1')
+    # Aggiungi legenda per le stelle
+    ax.scatter([], [], color='green', s=100, marker='*', label='Faster encoding')
+    ax.legend()
     
     plt.tight_layout()
     return fig
 
 def create_performance_summary_table(df):
-    encodings = ['original', 'optimized', 'original_plus_heuristics', 'optimized_plus_heuristics']
+    encodings = ['original', 'optimized', 'original_plus_heuristic', 'optimized_plus_heuristic']
     
     summary_data = []
     for encoding in encodings:
@@ -309,28 +292,30 @@ def main():
     print(f"Dati caricati: {len(df)} record con {df['encoding_type'].nunique()} encoding diversi")
     print(f"Encoding trovati: {df['encoding_type'].unique().tolist()}")
     
-    # 1. Confronto Original vs Optimized
-    print("Generando confronto Original vs Optimized...")
-    fig1 = compare_encodings_basic(df, 'original', 'optimized', "(Encoding Base)")
-    fig1.savefig(output_dir / 'comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
+    # 1. Confronto costi Original vs Optimized
+    print("Generando confronto costi Original vs Optimized...")
+    fig1 = create_cost_comparison_charts(df, 'original', 'optimized', "Original vs Optimized")
+    fig1.savefig(output_dir / 'cost_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
     plt.close(fig1)
     
-    # 2. Confronto con euristiche
-    print("Generando confronto con euristiche...")
-    fig2 = compare_heuristics(df)
-    fig2.savefig(output_dir / 'comparison_heuristics.png', dpi=300, bbox_inches='tight')
+    # 2. Confronto costi con euristiche
+    print("Generando confronto costi con euristiche...")
+    fig2 = create_cost_comparison_charts(df, 'original_plus_heuristic', 'optimized_plus_heuristic', 
+                                        "Original+Heuristic vs Optimized+Heuristic")
+    fig2.savefig(output_dir / 'cost_comparison_heuristic.png', dpi=300, bbox_inches='tight')
     plt.close(fig2)
     
-    # 3. Confronto completo
-    print("Generando confronto completo...")
-    fig3 = create_comprehensive_comparison(df)
-    fig3.savefig(output_dir / 'comprehensive_comparison.png', dpi=300, bbox_inches='tight')
+    # 3. Confronto tempi Original vs Optimized
+    print("Generando confronto tempi Original vs Optimized...")
+    fig3 = create_time_comparison_chart(df, 'original', 'optimized', "Original vs Optimized")
+    fig3.savefig(output_dir / 'time_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
     plt.close(fig3)
     
-    # 4. Analisi difficoltà
-    print("Generando analisi difficoltà...")
-    fig4 = create_difficulty_analysis(df)
-    fig4.savefig(output_dir / 'difficulty_analysis.png', dpi=300, bbox_inches='tight')
+    # 4. Confronto tempi con euristiche
+    print("Generando confronto tempi con euristiche...")
+    fig4 = create_time_comparison_chart(df, 'original_plus_heuristic', 'optimized_plus_heuristic', 
+                                       "Original+Heuristic vs Optimized+Heuristic")
+    fig4.savefig(output_dir / 'time_comparison_heuristic.png', dpi=300, bbox_inches='tight')
     plt.close(fig4)
     
     # 5. Tabella riassuntiva
@@ -346,8 +331,23 @@ def main():
     
     print(f"\nGrafici salvati in: {output_dir.absolute()}")
     print("File generati:")
+    print("- cost_comparison_original_vs_optimized.png")
+    print("- cost_comparison_heuristic.png")
+    print("- time_comparison_original_vs_optimized.png")
+    print("- time_comparison_heuristic.png")
+    print("- performance_summary.csv")
+
+if __name__ == "__main__":
+    main()
+    print("\n" + "="*80)
+    print("TABELLA RIASSUNTIVA DELLE PERFORMANCE")
+    print("="*80)
+    print(summary_table.to_string(index=False))
+    
+    print(f"\nGrafici salvati in: {output_dir.absolute()}")
+    print("File generati:")
     print("- comparison_original_vs_optimized.png")
-    print("- comparison_heuristics.png") 
+    print("- comparison_heuristic.png") 
     print("- comprehensive_comparison.png")
     print("- difficulty_analysis.png")
     print("- performance_summary.csv")

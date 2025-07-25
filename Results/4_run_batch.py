@@ -7,15 +7,15 @@ import csv
 import os
 import glob
 
-TIMEOUT = 3
+TIMEOUT = 10
 NUMBER_OF_RUNS = 1
 
 def create_encodings():
     encodings = {
         1: "../scripts/original_encoding.lp",
         2: "../scripts/optimized_encoding.lp", 
-        3: "../scripts/original_encoding_plus_heuristics.lp",
-        4: "../scripts/optimized_encoding_plus_heuristics.lp"
+        3: "../scripts/original_encoding_plus_heuristic.lp",
+        4: "../scripts/optimized_encoding_plus_heuristic.lp"
     }
     return encodings
 
