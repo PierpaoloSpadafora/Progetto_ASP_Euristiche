@@ -1,5 +1,11 @@
 config_id,input_file,base_encoding,run_number,cost_1,cost_2,elapsed_time,best_model_time,model_count,result_status,timed_out
-1,./input/days_3/input6.lp,original_encoding.lp,1,7,70,15.0256,9.9361,97,TIMEOUT,True
-2,./input/days_3/input6.lp,optimized_encoding.lp,1,7,70,15.0264,9.6395,97,TIMEOUT,True
-3,./input/days_5/input2.lp,original_encoding.lp,1,14,127,15.0397,13.3765,134,TIMEOUT,True
-4,./input/days_5/input2.lp,optimized_encoding.lp,1,90,35,15.037,14.6739,152,TIMEOUT,True
+1,../scripts/input/days_1/input1.lp,../scripts/original_encoding.lp,1,5,21,5.0086,1.779,56,TIMEOUT,True
+2,../scripts/input/days_1/input10.lp,../scripts/original_encoding.lp,1,5,23,5.0094,3.4101,34,TIMEOUT,True
+3,../scripts/input/days_1/input2.lp,../scripts/original_encoding.lp,1,11,13,5.0093,2.3545,56,TIMEOUT,True
+4,../scripts/input/days_1/input3.lp,../scripts/original_encoding.lp,1,6,18,5.009,1.0902,49,TIMEOUT,True
+5,../scripts/input/days_1/input4.lp,../scripts/original_encoding.lp,1,2,22,5.0094,4.2348,52,TIMEOUT,True
+6,../scripts/input/days_1/input5.lp,../scripts/original_encoding.lp,1,1,21,5.0096,1.1226,38,TIMEOUT,True
+7,../scripts/input/days_1/input6.lp,../scripts/original_encoding.lp,1,6,18,5.0089,4.8283,53,TIMEOUT,True
+8,../scripts/input/days_1/input7.lp,../scripts/original_encoding.lp,1,2,25,5.0094,1.9235,33,TIMEOUT,True
+9,../scripts/input/days_1/input8.lp,../scripts/original_encoding.lp,1,12,11,5.0098,2.4287,45,TIMEOUT,True
+10,../scripts/input/days_1/input9.lp,../scripts/original_encoding.lp,1,8,19,5.0095,4.284,35,TIMEOUT,True

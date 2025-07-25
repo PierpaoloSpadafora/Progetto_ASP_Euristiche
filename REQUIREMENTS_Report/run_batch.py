@@ -5,53 +5,53 @@ import json
 import multiprocessing
 import csv
 import os
+import glob
 
 TIMEOUT = 5
 NUMBER_OF_RUNS = 1
 
-def create_settings_configs():
-    settings_configs = {
-        1: {
-            "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": TIMEOUT,
-            "base_encoding": "original_encoding.lp",
-            "input_file": "./input/days_3/input6.lp",
-            "heuristics_to_try_file": "heuristics_to_try.lp",
-            "heuristics_file": "promising_ones.lp",
-            "timings_output_dir": "../timings",
-            "runs": NUMBER_OF_RUNS
-        },
-        2: {
-            "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": TIMEOUT,
-            "base_encoding": "optimized_encoding.lp",
-            "input_file": "./input/days_3/input6.lp",
-            "heuristics_to_try_file": "heuristics_to_try.lp",
-            "heuristics_file": "promising_ones.lp",
-            "timings_output_dir": "../timings",
-            "runs": NUMBER_OF_RUNS
-        },
-        3: {
-            "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": TIMEOUT,
-            "base_encoding": "original_encoding_plus_heuristics.lp",
-            "input_file": "./input/days_5/input2.lp",
-            "heuristics_to_try_file": "heuristics_to_try.lp",
-            "heuristics_file": "promising_ones.lp",
-            "timings_output_dir": "../timings",
-            "runs": NUMBER_OF_RUNS
-        },
-        4: {
-            "control_args": ["1", "--opt-mode=optN"],
-            "timeout_seconds": TIMEOUT,
-            "base_encoding": "optimized_encoding_plus_heuristics.lp.lp",
-            "input_file": "./input/days_5/input2.lp",
-            "heuristics_to_try_file": "heuristics_to_try.lp",
-            "heuristics_file": "promising_ones.lp",
-            "timings_output_dir": "../timings",
-            "runs": NUMBER_OF_RUNS
-        },
+def create_encodings():
+    encodings = {
+        1: "../scripts/original_encoding.lp",
+        #2: "../scripts/optimized_encoding.lp", 
+        #3: "../scripts/original_encoding_plus_heuristics.lp",
+        #4: "../scripts/optimized_encoding_plus_heuristics.lp"
     }
+    return encodings
+
+def find_input_files():
+    input_files = []
+    patterns = [
+        "../scripts/input/days_1/input*.lp",
+        #"../scripts/input/days_2/input*.lp", 
+        #"../scripts/input/days_3/input*.lp",
+        #"../scripts/input/days_5/input*.lp"
+    ]
+    
+    for pattern in patterns:
+        files = glob.glob(pattern)
+        input_files.extend(sorted(files))
+    
+    return input_files
+
+def create_settings_configs():
+    encodings = create_encodings()
+    input_files = find_input_files()
+    
+    settings_configs = {}
+    config_id = 1
+    
+    for input_file in input_files:
+        for encoding_id, encoding_file in encodings.items():
+            settings_configs[config_id] = {
+                "control_args": ["1", "--opt-mode=optN"],
+                "timeout_seconds": TIMEOUT,
+                "base_encoding": encoding_file,
+                "input_file": input_file,
+                "runs": NUMBER_OF_RUNS
+            }
+            config_id += 1
+    
     return settings_configs
 
 def cost_to_comparable(cost):
@@ -245,18 +245,20 @@ def run_configuration(config, config_id):
     
     return results
 
-def save_results_to_csv(all_results, filename="../REQUIREMENTS_Report/results.csv"):
+def save_results_to_csv(all_results, filename="results.csv"):
     if not all_results:
         print("Nessun risultato da salvare")
         return
     
+    output_path = os.path.join(".", filename)
+    
     fieldnames = [
-        'input_file', 'base_encoding',
-        'cost_1', 'cost_2', 'best_model_time', 'total_elapsed_time', 'model_count',
-        'result_status', 'timed_out',
+        'config_id', 'input_file', 'base_encoding', 'run_number',
+        'cost_1', 'cost_2', 'elapsed_time', 'best_model_time', 'model_count',
+        'result_status', 'timed_out'
     ]
     
-    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         
@@ -274,12 +276,14 @@ def save_results_to_csv(all_results, filename="../REQUIREMENTS_Report/results.cs
                     cost_1 = cost
             
             row = {
+                'config_id': result['config_id'],
                 'input_file': result['input_file'],
-                'base_encoding': f"{result['base_encoding']}",
+                'base_encoding': result['base_encoding'],
+                'run_number': result['run_number'],
                 'cost_1': cost_1,
                 'cost_2': cost_2,
+                'elapsed_time': round(result['elapsed_time'], 4),
                 'best_model_time': round(result['best_model_time'], 4) if result.get('best_model_time') is not None else None,
-                'total_elapsed_time': round(result['elapsed_time'], 4),
                 'model_count': result['model_count'],
                 'result_status': result['result_status'],
                 'timed_out': result['timed_out'],
@@ -287,7 +291,7 @@ def save_results_to_csv(all_results, filename="../REQUIREMENTS_Report/results.cs
             
             writer.writerow(row)
     
-    print(f"Risultati salvati in {filename}")
+    print(f"Risultati salvati in {output_path}")
 
 def main():
     settings_configs = create_settings_configs()
