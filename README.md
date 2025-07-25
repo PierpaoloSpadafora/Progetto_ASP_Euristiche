@@ -57,7 +57,7 @@ Esempio:
 ---
 
 ## Risultati e Osservazioni
-Ho testato prima varie combinazioni di euristiche usando come input il contenuto del file `./input/days_1/input1.lp`.
+Ho iniziato testato prima varie combinazioni di euristiche usando come input il contenuto del file `./input/days_1/input1.lp`.
 Il baseline (`original_encoding.lp` senza euristiche) trova dopo circa 10 secondi il primo answer set con costo [2,25] -> minimo locale
 Dopo 175 secondi Clingo termina, confermando che non esistono answer set con costo migliore, quindi [2,25] è anche un minimo globale.
 
@@ -83,4 +83,6 @@ ed eseguite insieme all' `original_encoding.lp` + ciascuno dei 40 file di input,
 - Sembra che le euristiche migliorino il tempo di risoluzione per trovare il minimo globale, ma in genere non migliorino o perfino peggiorano il tempo di risoluzione per trovare il primo AS con costo minimo.
 
 
-Per trarre delle conclusioni dettagliate
+Per trarre delle conclusioni più dettagliate ho deciso di provare ad eseguire sia `origina_encoding.lp` che `optimized_encoding.lp` su tutti i file di input con 180 secondi di timer e poi sia `original_encoding_plus_heuristics.lp` che `optimized_encoding_plus_heuristics.lp` che sono gli stessi script ma con l'aggiunta di una singola euristica, quella che dai dati sembra la più efficiente di tutte.
+
+Dopo un totale di 8 ore di esecuzione, ho ottenuto i seguenti risultati
