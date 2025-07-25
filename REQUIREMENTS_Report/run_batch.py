@@ -7,6 +7,7 @@ import csv
 import os
 
 TIMEOUT = 5
+NUMBER_OF_RUNS = 1
 
 def create_settings_configs():
     settings_configs = {
@@ -18,7 +19,7 @@ def create_settings_configs():
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
-            "runs": 1
+            "runs": NUMBER_OF_RUNS
         },
         2: {
             "control_args": ["1", "--opt-mode=optN"],
@@ -28,7 +29,7 @@ def create_settings_configs():
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
-            "runs": 1
+            "runs": NUMBER_OF_RUNS
         },
         3: {
             "control_args": ["1", "--opt-mode=optN"],
@@ -38,7 +39,7 @@ def create_settings_configs():
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
-            "runs": 1
+            "runs": NUMBER_OF_RUNS
         },
         4: {
             "control_args": ["1", "--opt-mode=optN"],
@@ -48,7 +49,7 @@ def create_settings_configs():
             "heuristics_to_try_file": "heuristics_to_try.lp",
             "heuristics_file": "promising_ones.lp",
             "timings_output_dir": "../timings",
-            "runs": 1
+            "runs": NUMBER_OF_RUNS
         },
     }
     return settings_configs
