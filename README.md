@@ -53,9 +53,9 @@ Esempio:
 ## Risultati e Osservazioni
 Ha senso solo se non consideriamo più il limite di tempo e vogliamo trovare il minimo globale, applicando le euristiche non sono riuscito ad abbassare il tempo di ricerca del primo AS con costo `[2,25]`, ma ho abbassato il tempo di ricerca per assicurarmi che `[2,25]` sia il minimo globale passando da 137 secondi a circa 38 secondi.
 
-Ho testato prima le varie combinazioni di euristiche usando come input il contenuto del file `./input/days_1/input1.lp`.
-Il baseline (= no euristiche) trova dopo circa 10 secondi il primo answer set con costo [2,25] -> minimo locale
-Dopo circa 135 secondi Clingo termina, confermando che non esistono answer set con costo migliore, quindi [2,25] è anche un minimo globale.
+Ho testato prima varie combinazioni di euristiche usando come input il contenuto del file `./input/days_1/input1.lp`.
+Il baseline (`original_encoding.lp` senza euristiche) trova dopo circa 10 secondi il primo answer set con costo [2,25] -> minimo locale
+Dopo 175 secondi Clingo termina, confermando che non esistono answer set con costo migliore, quindi [2,25] è anche un minimo globale.
 
 Di tutte le euristiche che ho provato nessuna ha migliorato il tempo di risoluzione del primo AS trovato in maniera rilevante (spesso è peggiorato, ma sempre in un range troppo piccolo per essere influenza dell'euristica), ma diverse hanno migliorato il tempo di risoluzione per trovare il minimo globale con uno speedup fino a `6,65` volte più veloce rispetto al baseline.
 

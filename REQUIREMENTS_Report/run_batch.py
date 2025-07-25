@@ -6,7 +6,7 @@ import multiprocessing
 import csv
 import os
 
-TIMEOUT = 15
+TIMEOUT = 5
 
 def create_settings_configs():
     settings_configs = {
@@ -244,7 +244,7 @@ def run_configuration(config, config_id):
     
     return results
 
-def save_results_to_csv(all_results, filename="results.csv"):
+def save_results_to_csv(all_results, filename="../REQUIREMENTS_Report/results.csv"):
     if not all_results:
         print("Nessun risultato da salvare")
         return
