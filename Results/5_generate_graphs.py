@@ -50,9 +50,16 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
     
     fig.suptitle(f'{title_prefix} - Confronto Costi (Lower is Better)', fontsize=16, fontweight='bold')
     
-    # Colori fissi per i due encoding
-    color1 = '#1f77b4'  # Blu per il primo encoding
-    color2 = '#ff7f0e'  # Arancione per il secondo encoding
+    # Schema colori basato sui tipi di encoding
+    color_map = {
+        'original': '#1f77b4',  # Blu
+        'optimized': '#ff7f0e',  # Arancione
+        'original_plus_heuristic': "#69428d",  # Viola
+        'optimized_plus_heuristic': "#ddbd30"  # Giallo
+    }
+    
+    color1 = color_map.get(encoding1, '#1f77b4')
+    color2 = color_map.get(encoding2, '#ff7f0e')
     
     for group in range(n_groups):
         start_idx = group * 10
@@ -193,64 +200,119 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
     return fig
 
 def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
-    """Crea line chart per confrontare i tempi di esecuzione"""
+    """Crea bar chart per confrontare i tempi di esecuzione tra due encoding"""
     df_filtered = df[df['encoding_type'].isin([encoding1, encoding2])]
+    
+    # Ordina per test_case usando ordinamento naturale
     test_cases = sorted(df_filtered['test_case'].unique(), key=natural_sort_key)
+    n_cases = len(test_cases)
     
-    fig, ax = plt.subplots(1, 1, figsize=(16, 8))
+    # Dividi in gruppi di 10
+    n_groups = (n_cases + 9) // 10  # Ceiling division
     
-    times1 = []
-    times2 = []
-    case_labels = []
+    fig, axes = plt.subplots(n_groups, 1, figsize=(16, 4 * n_groups))
+    if n_groups == 1:
+        axes = [axes]
     
-    for case in test_cases:
-        case_labels.append(case)
+    fig.suptitle(f'{title_prefix} - Confronto Tempi di Esecuzione (Lower is Better)', fontsize=16, fontweight='bold')
+    
+    # Schema colori basato sui tipi di encoding
+    color_map = {
+        'original': '#1f77b4',  # Blu
+        'optimized': '#ff7f0e',  # Arancione
+        'original_plus_heuristic': "#69428d",  # Viola
+        'optimized_plus_heuristic': "#ddbd30"  # Giallo
+    }
+    
+    color1 = color_map.get(encoding1, '#1f77b4')
+    color2 = color_map.get(encoding2, '#ff7f0e')
+    
+    for group in range(n_groups):
+        start_idx = group * 10
+        end_idx = min(start_idx + 10, n_cases)
+        group_cases = test_cases[start_idx:end_idx]
         
-        # Dati per encoding1
-        case_data1 = df_filtered[(df_filtered['test_case'] == case) & 
-                                (df_filtered['encoding_type'] == encoding1)]
-        if len(case_data1) > 0 and not pd.isna(case_data1.iloc[0]['best_model_time']):
-            times1.append(case_data1.iloc[0]['best_model_time'])
-        else:
-            times1.append(np.nan)
+        # Prepara dati per il gruppo corrente
+        time_data = {encoding1: [], encoding2: []}
+        case_labels = []
         
-        # Dati per encoding2
-        case_data2 = df_filtered[(df_filtered['test_case'] == case) & 
-                                (df_filtered['encoding_type'] == encoding2)]
-        if len(case_data2) > 0 and not pd.isna(case_data2.iloc[0]['best_model_time']):
-            times2.append(case_data2.iloc[0]['best_model_time'])
-        else:
-            times2.append(np.nan)
+        # Lista per tenere traccia delle differenze
+        time_differences = []
+        
+        for case in group_cases:
+            case_labels.append(case)
+            
+            # Raccogli dati per entrambi gli encoding
+            case_data_enc1 = df_filtered[(df_filtered['test_case'] == case) & 
+                                        (df_filtered['encoding_type'] == encoding1)]
+            case_data_enc2 = df_filtered[(df_filtered['test_case'] == case) & 
+                                        (df_filtered['encoding_type'] == encoding2)]
+            
+            # Best model time
+            time_enc1 = case_data_enc1.iloc[0]['best_model_time'] if len(case_data_enc1) > 0 and not pd.isna(case_data_enc1.iloc[0]['best_model_time']) else np.nan
+            time_enc2 = case_data_enc2.iloc[0]['best_model_time'] if len(case_data_enc2) > 0 and not pd.isna(case_data_enc2.iloc[0]['best_model_time']) else np.nan
+            
+            time_data[encoding1].append(time_enc1)
+            time_data[encoding2].append(time_enc2)
+            
+            # Controlla differenze
+            time_diff = None
+            
+            if not np.isnan(time_enc1) and not np.isnan(time_enc2):
+                if time_enc1 != time_enc2:
+                    time_diff = 'better' if time_enc2 < time_enc1 else 'worse'
+            
+            time_differences.append(time_diff)
+        
+        # Grafico tempi
+        ax = axes[group]
+        x = np.arange(len(case_labels))
+        width = 0.35
+        
+        bars1 = ax.bar(x - width/2, time_data[encoding1], width, 
+                       label=encoding1, alpha=0.8, color=color1)
+        bars2 = ax.bar(x + width/2, time_data[encoding2], width, 
+                       label=encoding2, alpha=0.8, color=color2)
+        
+        ax.set_ylabel('Best Model Time (seconds)')
+        if group == 0:
+            ax.set_title('Tempi di Esecuzione')
+        ax.set_xticks(x)
+        ax.set_xticklabels(case_labels, rotation=45, ha='right')
+        ax.grid(True, alpha=0.3)
+        
+        # Aggiungi valori sulle barre e asterischi per differenze
+        for i, (bar1, bar2, diff) in enumerate(zip(bars1, bars2, time_differences)):
+            height1 = bar1.get_height()
+            height2 = bar2.get_height()
+            
+            if not np.isnan(height1):
+                ax.annotate(f'{height1:.3f}', xy=(bar1.get_x() + bar1.get_width() / 2, height1),
+                           xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+            
+            if not np.isnan(height2):
+                ax.annotate(f'{height2:.3f}', xy=(bar2.get_x() + bar2.get_width() / 2, height2),
+                           xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+                
+                # Aggiungi asterisco per differenze
+                if diff is not None:
+                    max_height = max([h for h in time_data[encoding1] + time_data[encoding2] if not np.isnan(h)])
+                    ax.text(bar2.get_x() + bar2.get_width() / 2, height2 + max_height * 0.05,
+                           '★', ha='center', va='bottom', fontsize=12, fontweight='bold',
+                           color='#2ca02c' if diff == 'better' else '#d62728')
     
-    x = np.arange(len(case_labels))
-    
-    # Line plot
-    ax.plot(x, times1, marker='o', linewidth=2, markersize=6, 
-           label=encoding1, color='#1f77b4')
-    ax.plot(x, times2, marker='s', linewidth=2, markersize=6, 
-           label=encoding2, color='#ff7f0e')
-    
-    ax.set_xlabel('Test Case')
-    ax.set_ylabel('Best Model Time (seconds)')
-    ax.set_title(f'{title_prefix} - Confronto Tempi di Esecuzione')
-    ax.set_xticks(x[::2])  # Mostra ogni secondo label per evitare sovrapposizioni
-    ax.set_xticklabels([case_labels[i] for i in range(0, len(case_labels), 2)], 
-                      rotation=45, ha='right')
-    ax.grid(True, alpha=0.3)
-    
-    # Evidenzia quale encoding è più veloce per ogni caso
-    for i, (t1, t2) in enumerate(zip(times1, times2)):
-        if not np.isnan(t1) and not np.isnan(t2):
-            if t1 < t2:
-                ax.scatter(i, t1, color='green', s=100, marker='*', zorder=5)
-            elif t2 < t1:
-                ax.scatter(i, t2, color='green', s=100, marker='*', zorder=5)
-    
-    # Aggiungi legenda per le stelle
-    ax.scatter([], [], color='green', s=100, marker='*', label='Faster encoding')
-    ax.legend()
+    # Aggiungi una singola legenda per tutta la figura
+    from matplotlib.patches import Patch
+    legend_elements = [
+        Patch(facecolor=color1, alpha=0.8, label=encoding1),
+        Patch(facecolor=color2, alpha=0.8, label=encoding2),
+        Patch(facecolor='#2ca02c', alpha=0.8, label=f'{encoding2} (faster)'),
+        Patch(facecolor='#d62728', alpha=0.8, label=f'{encoding2} (slower)')
+    ]
+    fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 0.02), ncol=4, fontsize=10)
     
     plt.tight_layout()
+    plt.subplots_adjust(bottom=0.1)  # Lascia spazio per la legenda
     return fig
 
 def create_performance_summary_table(df):
@@ -365,20 +427,48 @@ def main():
     fig2.savefig(output_dir / 'cost_comparison_heuristic.png', dpi=300, bbox_inches='tight')
     plt.close(fig2)
     
-    # 3. Confronto tempi Original vs Optimized
-    print("Generando confronto tempi Original vs Optimized...")
-    fig3 = create_time_comparison_chart(df, 'original', 'optimized', "Original vs Optimized")
-    fig3.savefig(output_dir / 'time_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
+    # 3. Confronto costi Original vs Original+Heuristic
+    print("Generando confronto costi Original vs Original+Heuristic...")
+    fig3 = create_cost_comparison_charts(df, 'original', 'original_plus_heuristic', 
+                                        "Original vs Original+Heuristic")
+    fig3.savefig(output_dir / 'cost_comparison_original_vs_original_heuristic.png', dpi=300, bbox_inches='tight')
     plt.close(fig3)
     
-    # 4. Confronto tempi con euristiche
-    print("Generando confronto tempi con euristiche...")
-    fig4 = create_time_comparison_chart(df, 'original_plus_heuristic', 'optimized_plus_heuristic', 
-                                       "Original+Heuristic vs Optimized+Heuristic")
-    fig4.savefig(output_dir / 'time_comparison_heuristic.png', dpi=300, bbox_inches='tight')
+    # 4. Confronto costi Optimized vs Optimized+Heuristic
+    print("Generando confronto costi Optimized vs Optimized+Heuristic...")
+    fig4 = create_cost_comparison_charts(df, 'optimized', 'optimized_plus_heuristic', 
+                                        "Optimized vs Optimized+Heuristic")
+    fig4.savefig(output_dir / 'cost_comparison_optimized_vs_optimized_heuristic.png', dpi=300, bbox_inches='tight')
     plt.close(fig4)
     
-    # 5. Tabella riassuntiva
+    # 5. Confronto tempi Original vs Optimized
+    print("Generando confronto tempi Original vs Optimized...")
+    fig5 = create_time_comparison_chart(df, 'original', 'optimized', "Original vs Optimized")
+    fig5.savefig(output_dir / 'time_comparison_original_vs_optimized.png', dpi=300, bbox_inches='tight')
+    plt.close(fig5)
+    
+    # 6. Confronto tempi con euristiche
+    print("Generando confronto tempi con euristiche...")
+    fig6 = create_time_comparison_chart(df, 'original_plus_heuristic', 'optimized_plus_heuristic', 
+                                       "Original+Heuristic vs Optimized+Heuristic")
+    fig6.savefig(output_dir / 'time_comparison_heuristic.png', dpi=300, bbox_inches='tight')
+    plt.close(fig6)
+    
+    # 7. Confronto tempi Original vs Original+Heuristic
+    print("Generando confronto tempi Original vs Original+Heuristic...")
+    fig7 = create_time_comparison_chart(df, 'original', 'original_plus_heuristic', 
+                                       "Original vs Original+Heuristic")
+    fig7.savefig(output_dir / 'time_comparison_original_vs_original_heuristic.png', dpi=300, bbox_inches='tight')
+    plt.close(fig7)
+    
+    # 8. Confronto tempi Optimized vs Optimized+Heuristic
+    print("Generando confronto tempi Optimized vs Optimized+Heuristic...")
+    fig8 = create_time_comparison_chart(df, 'optimized', 'optimized_plus_heuristic', 
+                                       "Optimized vs Optimized+Heuristic")
+    fig8.savefig(output_dir / 'time_comparison_optimized_vs_optimized_heuristic.png', dpi=300, bbox_inches='tight')
+    plt.close(fig8)
+    
+    # 9. Tabella riassuntiva
     print("Generando tabella riassuntiva...")
     summary_table = create_performance_summary_table(df)
     summary_table.to_csv(output_dir / 'performance_summary.csv', index=False)
@@ -393,8 +483,12 @@ def main():
     print("File generati:")
     print("- cost_comparison_original_vs_optimized.png")
     print("- cost_comparison_heuristic.png")
+    print("- cost_comparison_original_vs_original_heuristic.png")
+    print("- cost_comparison_optimized_vs_optimized_heuristic.png")
     print("- time_comparison_original_vs_optimized.png")
     print("- time_comparison_heuristic.png")
+    print("- time_comparison_original_vs_original_heuristic.png")
+    print("- time_comparison_optimized_vs_optimized_heuristic.png")
     print("- performance_summary.csv")
 
 if __name__ == "__main__":
