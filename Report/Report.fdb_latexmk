@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1753466928.36479 "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" "Report.pdf" "Report" 1753466928.88241 2
-  "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" 1753466927.55184 15644 3d1ba8f39e72b9cb111d11eb30616fb7 ""
+["pdflatex"] 1753518637.22937 "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" "Report.pdf" "Report" 1753518637.79971 2
+  "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" 1753518636.20256 15648 a74d10161bcb6ea1949230789415bf35 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1742685315 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1742685315 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1742685315 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -111,9 +111,9 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1742685315 42087 b0f9697c952c8f5a8eede4134282cb0d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743760648 5344687 b8cc3e41c7a56fde16a369954ea9cfec ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743760631 2109598 f81bf64109054bdd816777d742d41f5a ""
-  "Report.aux" 1753466928.80836 4919 80c0faf829236d4ca1365679a4fc1711 "pdflatex"
-  "Report.out" 1753466928.80936 4912 ec05a37ac62e07f6d22486ffe1b3b073 "pdflatex"
-  "Report.tex" 1753466927.55184 15644 3d1ba8f39e72b9cb111d11eb30616fb7 ""
+  "Report.aux" 1753518637.72439 4919 80c0faf829236d4ca1365679a4fc1711 "pdflatex"
+  "Report.out" 1753518637.72539 4912 ec05a37ac62e07f6d22486ffe1b3b073 "pdflatex"
+  "Report.tex" 1753518636.20256 15648 a74d10161bcb6ea1949230789415bf35 ""
   "cost_comparison_heuristic.png" 0 -1 0 ""
   "cost_comparison_original_vs_optimized.png" 0 -1 0 ""
   "time_comparison_heuristic.png" 0 -1 0 ""
