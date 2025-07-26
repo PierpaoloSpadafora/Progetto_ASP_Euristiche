@@ -209,7 +209,39 @@ cambiandolo in:
       ST+SURGDUR <= shift_duration
 } 1 :- registration(REGID,_,_,_,_,_,_).
 
-questo perchè 
+questo perchè, come si può vedere nella mia repository github nella cartella /Optimization_Explained ci sono delle grosse differenze di performance tra questi 3 approcci
+
+
+
+% APPROCCIO 1 -> quello della repositoryu di Caruso
+0 { scegli(P1,F2,F3,F4) : 
+} 1 :-  
+proteina(P1), 
+cibo(F2), 
+cibo(F3), 
+cibo(F4).
+
+:- proteina(P1), #count {P1 : scegli(P1,_,_,_)} > 1.
+
+
+% APPROCCIO 2 
+1 { scegli(P1,F2,F3,F4) : 
+            cibo(F2), 
+            cibo(F3), 
+            cibo(F4)
+} 1 :-
+proteina(P1). 
+
+
+% APPROCCIO 3 
+1 { scegli(P1,F2,F3,F4) : 
+            proteina(P1),
+            cibo(F2), 
+            cibo(F3), 
+            cibo(F4)
+} 1.
+
+
 
 \begin{table}[H]
 \centering

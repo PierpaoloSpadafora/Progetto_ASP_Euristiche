@@ -1,3 +1,5 @@
+# ----------------------------- APPROCCIO FACILE -----------------------------
+
 cd facile
 clingo --mode=gringo 1.lp > out1
 clingo --mode=gringo 2.lp > out2
@@ -15,8 +17,21 @@ diff ./facile/out1 ./facile/out3
 diff ./facile/out2 ./facile/out3
 
 
+# --- STATS ---
 
-# -----------------------------
+
+echo "-----------------------------"
+clingo 1.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+echo "-----------------------------"
+clingo 2.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+echo "-----------------------------"
+clingo 3.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+echo "-----------------------------"
+
+
+
+
+# ----------------------------- APPROCCIO REALE -----------------------------
 
 
 
@@ -50,3 +65,11 @@ clear
 
 diff ./reale/original_grounded ./reale/optimized_grounded
 
+
+# --- STATS ---
+
+echo "-----------------------------"
+clingo input_to_ground.lp original_to_ground.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+echo "-----------------------------"
+clingo input_to_ground.lp optimized_to_ground.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+echo "-----------------------------"

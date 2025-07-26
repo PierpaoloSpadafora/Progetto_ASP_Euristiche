@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.5.28)  26 JUL 2025 13:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.5.28)  26 JUL 2025 15:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1135,6 +1135,70 @@ Overfull \hbox (783.71527pt too wide) in paragraph at lines 202--211
 []\OT1/cmr/m/n/10.95 0  x(REGID,PRI,SRGID,ANID,OPROOM,SHIFT,DAY,ST) : registration(REGID,PRI,SURGDUR,$[]\OML/cmm/m/it/10.95 SPECID;[] []; mss\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 OPROOM; SHIFT; SPECID; DAY\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; surgeon\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 SRGID; SPECID; SHIFT\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; an\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ANID; SPECID; SHIFT\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; time\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 SHIFT; ST\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; ST \OT1/cmr/m/n/10.95 +
  []
 
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:212: Missing $ inserted.
+<inserted text> 
+                $
+l.212 ...tory github nella cartella /Optimization_
+                                                  Explained ci sono delle gr...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:213: Missing $ inserted.
+<inserted text> 
+                $
+l.213 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (336.10349pt too wide) in paragraph at lines 212--213
+[]\OT1/cmr/m/n/10.95 questo perch^^Re, come si pu^^Ro vedere nella mia repos-i-tory github nella cartella /Optimization$[]\OML/cmm/m/it/10.95 xplainedcisonodellegrossedifferenzediperformancetraquesti\OT1/cmr/m/n/10.95 3\OML/cmm/m/it/10.95 approcci$ 
+ []
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: You can't use `macro parameter character #' in horizontal mode.
+l.224 :- proteina(P1), #
+                        count {P1 : scegli(P1,_,_,_)} > 1.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Missing $ inserted.
+<inserted text> 
+                $
+l.224 :- proteina(P1), #count {P1 : scegli(P1,_
+                                               ,_,_)} > 1.
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Double subscript.
+l.224 :- proteina(P1), #count {P1 : scegli(P1,_,_
+                                                 ,_)} > 1.
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Double subscript.
+l.224 ...roteina(P1), #count {P1 : scegli(P1,_,_,_
+                                                  )} > 1.
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Extra }, or forgotten $.
+l.224 ...teina(P1), #count {P1 : scegli(P1,_,_,_)}
+                                                   > 1.
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:225: Missing $ inserted.
+<inserted text> 
+                $
+l.225 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
 
 
 
@@ -1146,16 +1210,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2]
 
-LaTeX Warning: File `cost_comparison_original_vs_optimized.png' not found on input line 248.
+LaTeX Warning: File `cost_comparison_original_vs_optimized.png' not found on input line 280.
 
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:248: Package pdftex.def Error: File `cost_comparison_original_vs_optimized.png' not found: using draft setting.
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:280: Package pdftex.def Error: File `cost_comparison_original_vs_optimized.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.248 ...ost_comparison_original_vs_optimized.png}
+l.280 ...ost_comparison_original_vs_optimized.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1171,19 +1235,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3]
 
-LaTeX Warning: Reference `fig:cost_orig_opt' on page 4 undefined on input line 253.
+LaTeX Warning: Reference `fig:cost_orig_opt' on page 4 undefined on input line 285.
 
 
-LaTeX Warning: File `cost_comparison_heuristic.png' not found on input line 257.
+LaTeX Warning: File `cost_comparison_heuristic.png' not found on input line 289.
 
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:257: Package pdftex.def Error: File `cost_comparison_heuristic.png' not found: using draft setting.
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:289: Package pdftex.def Error: File `cost_comparison_heuristic.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.257 ...textwidth]{cost_comparison_heuristic.png}
+l.289 ...textwidth]{cost_comparison_heuristic.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1199,19 +1263,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4]
 
-LaTeX Warning: Reference `fig:cost_heuristic' on page 5 undefined on input line 262.
+LaTeX Warning: Reference `fig:cost_heuristic' on page 5 undefined on input line 294.
 
 
-LaTeX Warning: File `time_comparison_original_vs_optimized.png' not found on input line 266.
+LaTeX Warning: File `time_comparison_original_vs_optimized.png' not found on input line 298.
 
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:266: Package pdftex.def Error: File `time_comparison_original_vs_optimized.png' not found: using draft setting.
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:298: Package pdftex.def Error: File `time_comparison_original_vs_optimized.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.266 ...ime_comparison_original_vs_optimized.png}
+l.298 ...ime_comparison_original_vs_optimized.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1227,19 +1291,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [5]
 
-LaTeX Warning: Reference `fig:time_orig_opt' on page 6 undefined on input line 271.
+LaTeX Warning: Reference `fig:time_orig_opt' on page 6 undefined on input line 303.
 
 
-LaTeX Warning: File `time_comparison_heuristic.png' not found on input line 275.
+LaTeX Warning: File `time_comparison_heuristic.png' not found on input line 307.
 
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:275: Package pdftex.def Error: File `time_comparison_heuristic.png' not found: using draft setting.
+/home/ribben/Desktop/clingo/ORS/Report/Report.tex:307: Package pdftex.def Error: File `time_comparison_heuristic.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.275 ...textwidth]{time_comparison_heuristic.png}
+l.307 ...textwidth]{time_comparison_heuristic.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1301,22 +1365,23 @@ Package rerunfilecheck Info: Checksums for `Report.out':
 (rerunfilecheck)             Before: <no file>
 (rerunfilecheck)             After:  8F7415CC2F59BC7FCB04064CADCE9605;4897.
  )
-(\end occurred inside a group at level 3)
+(\end occurred inside a group at level 4)
 
+### simple group (level 4) entered at line 224 ({)
 ### simple group (level 3) entered at line 202 ({)
 ### simple group (level 2) entered at line 186 ({)
 ### simple group (level 1) entered at line 128 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 15671 strings out of 474651
- 248675 string characters out of 5756723
+ 15672 strings out of 474651
+ 248683 string characters out of 5756723
  674277 words of memory out of 5000000
- 38600 multiletter control sequences out of 15000+600000
+ 38601 multiletter control sequences out of 15000+600000
  565777 words of font info for 62 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 75i,12n,79p,633b,743s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,633b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (10 pages, 167447 bytes).
+Output written on Report.pdf (10 pages, 168130 bytes).
 PDF statistics:
  145 PDF objects out of 1000 (max. 8388607)
  109 compressed objects within 2 object streams
