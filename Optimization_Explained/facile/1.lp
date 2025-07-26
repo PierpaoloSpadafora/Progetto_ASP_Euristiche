@@ -5,6 +5,13 @@ protein(tuna). protein(veal).
 protein(salmon). protein(pork). 
 
 
+food(mighghflk). food(adasdcfdgyhyser). food(bsddfsdgfanana). 
+food(chgheese). food(brsdead). food(lerttrtyttuce). 
+protein(sdfsdfsdfsdfsfd). protein(cvnhgf). 
+protein(aethjnhjhjffgh). protein(asdfgtdgdfhgds). 
+
+
+
 % Scegli 1 proteina e 3 cibi
 0 { choice(P1,F2,F3,F4) : 
 } 1 :-  
