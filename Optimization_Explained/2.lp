@@ -9,11 +9,11 @@ proteina(salmone). proteina(maiale).
 
 % Scegli 1 proteina e 3 cibi
 1 { scegli(P1,F2,F3,F4) : 
-            proteina(P1),
             cibo(F2), 
             cibo(F3), 
             cibo(F4)
-} 1.
+} 1 :-
+proteina(P1). 
 
 
 #show scegli/4.

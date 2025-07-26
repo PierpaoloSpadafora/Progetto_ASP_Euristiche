@@ -15,8 +15,7 @@ cibo(F2),
 cibo(F3), 
 cibo(F4).
 
-% elimina le selezioni con più di una fonte proteica costosa
-:- #count {P1 : scegli(P1,_,_,_)} > 1.
+:- proteina(P1), #count {P1 : scegli(P1,_,_,_)} > 1.
 
 
 #show scegli/4.
