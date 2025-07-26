@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.5.28)  26 JUL 2025 15:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.5.28)  26 JUL 2025 18:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -393,31 +393,14 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count320
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count321
-) (/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
-\f@nch@headwidth=\skip63
-\f@nch@offset@elh=\skip64
-\f@nch@offset@erh=\skip65
-\f@nch@offset@olh=\skip66
-\f@nch@offset@orh=\skip67
-\f@nch@offset@elf=\skip68
-\f@nch@offset@erf=\skip69
-\f@nch@offset@olf=\skip70
-\f@nch@offset@orf=\skip71
-\f@nch@height=\skip72
-\f@nch@footalignment=\skip73
-\f@nch@widthL=\skip74
-\f@nch@widthC=\skip75
-\f@nch@widthR=\skip76
-\@temptokenb=\toks31
 ) (/usr/share/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box65
-\beforetitleunit=\skip77
-\aftertitleunit=\skip78
+\beforetitleunit=\skip63
+\aftertitleunit=\skip64
 \ttl@plus=\dimen195
 \ttl@minus=\dimen196
-\ttl@toksa=\toks32
+\ttl@toksa=\toks31
 \titlewidth=\dimen197
 \titlewidthlast=\dimen198
 \titlewidthfirst=\dimen199
@@ -428,24 +411,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ) (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -455,15 +438,15 @@ LaTeX Font Info:    ... okay on input line 45.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
-* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=702.78308pt
-* \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
-* \topmargin=-38.1381pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.3571pt
+* \topmargin=-7.86334pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -488,19 +471,20 @@ LaTeX Font Info:    ... okay on input line 45.
 \scratchbox=\box67
 \nofMPsegments=\count324
 \nofMParguments=\count325
-\everyMPshowfont=\toks33
+\everyMPshowfont=\toks32
 \MPscratchCnt=\count326
 \MPscratchDim=\dimen257
 \MPnumerator=\count327
 \makeMPintoPDFobject=\count328
-\everyMPtoPDFconversion=\toks34
+\everyMPtoPDFconversion=\toks33
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 32.
+ (./Report.out) (./Report.out)
 \@outlinefile=\write3
 \openout3 = `Report.out'.
 
@@ -512,879 +496,160 @@ Package caption Info: End \AtBeginDocument code.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:82: Missing $ inserted.
-<inserted text> 
-                $
-l.82 ...e interessanti per il dominio nel file "0_
-                                                  heuristics_to_try.lp"
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:83: Missing $ inserted.
-<inserted text> 
-                $
-l.83 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:84: Missing $ inserted.
-<inserted text> 
-                $
-l.84 2) eseguire "py 1_
-                       brute_force_heuristic_extractor.py" per estrarre le e...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-LaTeX Warning: Command \` invalid in math mode on input line 84.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:84: Please use \mathaccent for accents in math mode.
-\add@accent ... \let \ignorespaces \relax \accent 
-                                                  #1 #2\egroup \ifmmode \els...
-l.84 ...e o il tempo per raggiungere l'ottimalità
-                                                   globale) nel file "2_prom...
-I'm changing \accent to \mathaccent here; wish me luck.
-(Accents are not the same in formulas as they are in text.)
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:85: Missing $ inserted.
-<inserted text> 
-                $
-l.85 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (1165.72353pt too wide) in paragraph at lines 84--85
-[]\OT1/cmr/m/n/10.95 2) es-eguire "py 1$[]\OML/cmm/m/it/10.95 rute[]orce[]euristic[]xtractor:py\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 perestrarreleeuristichedalfile\OT1/cmr/m/n/10.95 "0[]\OML/cmm/m/it/10.95 euristics[]o[]ry:lp\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 eprovarleunaadunasulfilediinputspecificatoinsettings:jsonesalvandoleeuristichepromettenti\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ovveroquellechemiglioranoiltempodiricercadellaprimasoluzioneoiltempoperraggiungerel[]ottimalit[]globale\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 nelfile\OT1/cmr/m/n/10.95 "2[]\OML/cmm/m/it/10.95 romising[]nes:lp\OT1/cmr/m/n/10.95 "$ 
+Overfull \hbox (78.83698pt too wide) in paragraph at lines 68--69
+[]\OT1/cmr/bx/n/10.95 Phase 2: In-di-vid-ual Heuris-tic Eval-u-a-tion \OT1/cmr/m/n/10.95 - The script \OT1/cmtt/m/n/10.95 1[]brute[]force[]heuristic[]extractor.py
  []
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:86: Missing $ inserted.
-<inserted text> 
-                $
-l.86 3) eseguire "py 3_
-                       combine_heuristics.py" per eseguire sempre sul file d...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 70.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 70.
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:86: Double subscript.
-l.86 ...i risultati in "timings_{input_file_name}_
-                                                  .xlsx".
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:87: Missing $ inserted.
-<inserted text> 
-                $
-l.87 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 70.
 
 
-Overfull \hbox (566.44073pt too wide) in paragraph at lines 86--87
-[]\OT1/cmr/m/n/10.95 3) es-eguire "py 3$[]\OML/cmm/m/it/10.95 ombine[]euristics:py\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 pereseguiresempresulfilediinputspecificatoinsettings:jsontuttelecombinazionidelleeuristichesalvatein\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 promising[]nes:lp\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 esalvairisultatiin\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 timings[][]xlsx\OT1/cmr/m/n/10.95 "\OML/cmm/m/it/10.95 :$ 
- []
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:93: Missing $ inserted.
-<inserted text> 
-                $
-l.93 cost_
-          1, cost_2, elapsed_time, best_model_time, model_count, result_stat...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:94: Missing $ inserted.
-<inserted text> 
-                $
-l.94 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:102: Missing $ inserted.
-<inserted text> 
-                $
-l.102 For the primary test case (days_
-                                      1/input1.lp), the baseline solver requ...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:105: Missing $ inserted.
-<inserted text> 
-                $
-l.105 \subsection{Heuristic Impact Assessment}
-                                              
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (1340.73051pt too wide) in paragraph at lines 101--105
-\OT1/cmr/m/n/10.95 chal-lenges for cer-tain prob-lem classes. For the pri-mary test case (days$[]\OML/cmm/m/it/10.95 =input\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 :lp\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; thebaselinesolverrequiredapproximately\OT1/cmr/m/n/10.95 10\OML/cmm/m/it/10.95 secondstoidentifythefirstanswersetwithcost\OT1/cmr/m/n/10.95 [2\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 25]\OML/cmm/m/it/10.95 ; representingalocalminimum:However; achievingglobaloptimality\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 provingthat\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 25\OML/cmm/m/it/10.95 wasinfacttheoptimum\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 required\OT1/cmr/m/n/10.95 175\OML/cmm/m/it/10.95 seconds; highlightingthecomputationalintensityofoptimalsolutiondiscovery:[] 
- []
-
-
-Overfull \hbox (656.17966pt too wide) in paragraph at lines 101--105
-\OML/cmm/m/it/10.95 Thisperformanceprofileischaracteristicofcomplexcombinatorialoptimizationproblemswherethesearchspacecontainsmultiplelocaloptimaandthesolvermustnavigatethroughnumerouspotentialsolutionstoconfirmglobaloptimality:$ 
- []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.114 ...ubsection{Heuristic Combination Analysis}
-                                                   [1]
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:127: You can't use `macro parameter character #' in vertical mode.
-l.127 #
-       heuristic
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+l.77 
+      [1]
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:128: You can't use `macro parameter character #' in horizontal mode.
-l.128     x(R,P,S,A,O,SH,D,ST) :  #
-                                   count{R2 : x(R2,_,S,_,_,SH,D,_)} > 2.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+[2{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:128: Missing $ inserted.
-<inserted text> 
-                $
-l.128 ...(R,P,S,A,O,SH,D,ST) :  #count{R2 : x(R2,_
-                                                  ,S,_,_,SH,D,_)} > 2.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
+[3] (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (/usr/share/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 132.
+ (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 132.
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 132.
+ (/usr/share/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 132.
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:128: Double subscript.
-l.128 ...,A,O,SH,D,ST) :  #count{R2 : x(R2,_,S,_,_
-                                                  ,SH,D,_)} > 2.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:128: Extra }, or forgotten $.
-l.128 ...,ST) :  #count{R2 : x(R2,_,S,_,_,SH,D,_)}
-                                                   > 2.
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:130: Missing $ inserted.
-<inserted text> 
-                $
-l.130 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:135: You can't use `macro parameter character #' in vertical mode.
-l.135 #
-       heuristic
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:136: Missing $ inserted.
-<inserted text> 
-                $
-l.136     x(R,P,S,A,O,SH,D,ST) :  surgeon(S,_
-                                             ,SH),
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:137: You can't use `macro parameter character #' in math mode.
-l.137                             #
-                                   count{R2 : x(R2,_,S,_,_,SH,D,_)} == 0,
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:137: Double subscript.
-l.137 ...                 #count{R2 : x(R2,_,S,_,_
-                                                  ,SH,D,_)} == 0,
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:138: Double subscript.
-l.138 ...                     registration(R,1,_,_
-                                                  ,_,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:138: Double subscript.
-l.138 ...                   registration(R,1,_,_,_
-                                                  ,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:138: Double subscript.
-l.138 ...                 registration(R,1,_,_,_,_
-                                                  ,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:138: Double subscript.
-l.138 ...               registration(R,1,_,_,_,_,_
-                                                  ).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:140: Missing $ inserted.
-<inserted text> 
-                $
-l.140 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (134.52406pt too wide) in paragraph at lines 135--140
-[]\OT1/cmr/m/n/10.95 heuristic x(R,P,S,A,O,SH,D,ST) : surgeon(S,$[]\OML/cmm/m/it/10.95 SH\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; count[] \OT1/cmr/m/n/10.95 == 0\OML/cmm/m/it/10.95 ; registration\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 R; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ;[] [][][][]:\OT1/cmr/m/n/10.95 [15@8\OML/cmm/m/it/10.95 ; true\OT1/cmr/m/n/10.95 ]$ 
- []
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:145: You can't use `macro parameter character #' in vertical mode.
-l.145 #
-       heuristic
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:146: Missing $ inserted.
-<inserted text> 
-                $
-l.146     x(R,P,S,A,O,SH,D,ST) :  registration(R,_
-                                                  ,DUR,_,_,_,_),
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:146: Double subscript.
-l.146 ...,A,O,SH,D,ST) :  registration(R,_,DUR,_,_
-                                                  ,_,_),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:146: Double subscript.
-l.146 ...,O,SH,D,ST) :  registration(R,_,DUR,_,_,_
-                                                  ,_),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:146: Double subscript.
-l.146 ...,SH,D,ST) :  registration(R,_,DUR,_,_,_,_
-                                                  ),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:148: Double subscript.
-l.148 ...               registration(R2,_,DUR2,_,_
-                                                  ,_,_),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:148: Double subscript.
-l.148 ...             registration(R2,_,DUR2,_,_,_
-                                                  ,_),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:148: Double subscript.
-l.148 ...           registration(R2,_,DUR2,_,_,_,_
-                                                  ),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:150: Double subscript.
-l.150                             not x(R2,_,_
-                                              ,_,_,_,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:150: Double subscript.
-l.150                             not x(R2,_,_,_
-                                                ,_,_,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:150: Double subscript.
-l.150                             not x(R2,_,_,_,_
-                                                  ,_,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:150: Double subscript.
-l.150 ...                       not x(R2,_,_,_,_,_
-                                                  ,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:150: Double subscript.
-l.150 ...                     not x(R2,_,_,_,_,_,_
-                                                  ,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:150: Double subscript.
-l.150 ...                   not x(R2,_,_,_,_,_,_,_
-                                                  ).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:152: Missing $ inserted.
-<inserted text> 
-                $
-l.152 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (144.21594pt too wide) in paragraph at lines 145--152
-[]\OT1/cmr/m/n/10.95 heuristic x(R,P,S,A,O,SH,D,ST) : registration(R,$[]\OML/cmm/m/it/10.95 DUR;[] [][][]; DUR <\OT1/cmr/m/n/10.95 = 2\OML/cmm/m/it/10.95 ; ST <\OT1/cmr/m/n/10.95 = 2\OML/cmm/m/it/10.95 ; registration\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 R\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ;[] DUR\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ;[] [][][]; DUR\OT1/cmr/m/n/10.95 2 \OML/cmm/m/it/10.95 >\OT1/cmr/m/n/10.95 =
- []
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:157: You can't use `macro parameter character #' in vertical mode.
-l.157 #
-       heuristic
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:158: Missing $ inserted.
-<inserted text> 
-                $
-l.158     x(R,P,S,A,O,SH,D,ST) :  surgeon(S,_
-                                             ,SH),
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:159: You can't use `macro parameter character #' in math mode.
-l.159                             #
-                                   count{R2 : x(R2,_,S,_,_,SH,D,_)} == 0.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:159: Double subscript.
-l.159 ...                 #count{R2 : x(R2,_,S,_,_
-                                                  ,SH,D,_)} == 0.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:161: Missing $ inserted.
-<inserted text> 
-                $
-l.161 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (27.08452pt too wide) in paragraph at lines 157--161
-[]\OT1/cmr/m/n/10.95 heuristic x(R,P,S,A,O,SH,D,ST) : surgeon(S,$[]\OML/cmm/m/it/10.95 SH\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; count[] \OT1/cmr/m/n/10.95 == 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 [15@6\OML/cmm/m/it/10.95 ; true\OT1/cmr/m/n/10.95 ]$ 
- []
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:166: You can't use `macro parameter character #' in vertical mode.
-l.166 #
-       heuristic
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:167: Missing $ inserted.
-<inserted text> 
-                $
-l.167     x(R,P,S,A,O,SH,D,ST) :  x(R2,_
-                                        ,S,_,_,SH,D,ST2),
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:167: Double subscript.
-l.167     x(R,P,S,A,O,SH,D,ST) :  x(R2,_,S,_,_
-                                              ,SH,D,ST2),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:170: Missing $ inserted.
-<inserted text> 
-                $
-l.170 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (13.09998pt too wide) in paragraph at lines 166--170
-[]\OT1/cmr/m/n/10.95 heuristic x(R,P,S,A,O,SH,D,ST) : x(R2,$[]\OML/cmm/m/it/10.95 S;[] []SH; D; ST\OT1/cmr/m/n/10.95 2)\OML/cmm/m/it/10.95 ; R\OT1/cmr/m/n/10.95 ! = \OML/cmm/m/it/10.95 R\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 ST \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 ST\OT1/cmr/m/n/10.95 2\OMS/cmsy/m/n/10.95 j \OT1/cmr/m/n/10.95 == 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 [8@5\OML/cmm/m/it/10.95 ; true\OT1/cmr/m/n/10.95 ]$ 
- []
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:175: You can't use `macro parameter character #' in vertical mode.
-l.175 #
-       heuristic
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:176: Missing $ inserted.
-<inserted text> 
-                $
-l.176     x(R,P,S,A,O,SH,D,ST) :  surgeon(S,_
-                                             ,SH),
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:177: You can't use `macro parameter character #' in math mode.
-l.177                             #
-                                   count{R2 : x(R2,_,S,_,_,SH,D,_)} == 0,
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:177: Double subscript.
-l.177 ...                 #count{R2 : x(R2,_,S,_,_
-                                                  ,SH,D,_)} == 0,
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:178: Double subscript.
-l.178 ...                 registration(R,_,DUR,_,_
-                                                  ,_,_), DUR < 4.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:178: Double subscript.
-l.178 ...               registration(R,_,DUR,_,_,_
-                                                  ,_), DUR < 4.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:178: Double subscript.
-l.178 ...             registration(R,_,DUR,_,_,_,_
-                                                  ), DUR < 4.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:180: Missing $ inserted.
-<inserted text> 
-                $
-l.180 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (138.8529pt too wide) in paragraph at lines 175--180
-[]\OT1/cmr/m/n/10.95 heuristic x(R,P,S,A,O,SH,D,ST) : surgeon(S,$[]\OML/cmm/m/it/10.95 SH\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; count[] \OT1/cmr/m/n/10.95 == 0\OML/cmm/m/it/10.95 ; registration\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 R;[] DUR;[] [][][]; DUR <
- []
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:188: Missing $ inserted.
-<inserted text> 
-                $
-l.188         ST+SURGDUR <= shift_
-                                  duration
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:189: Extra }, or forgotten $.
-l.189     }
-           
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:191: Double subscript.
-l.191 registration(REGID,PRI,SURGDUR,_,SPECID,_,_
-                                                 ),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:196: Missing $ inserted.
-<inserted text> 
-                $
-l.196 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (35.13379pt too wide) in paragraph at lines 186--196
-[]\OT1/cmr/m/n/10.95 0  x(REGID,PRI,SRGID,ANID,OPROOMID,SHIFT,DAY,ST): ST+SURGDUR <= shift$[]\OML/cmm/m/it/10.95 uration\OT1/cmr/m/n/10.95 1 :
+Overfull \hbox (8.80077pt too wide) in paragraph at lines 132--133
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (492.12506pt too wide) in paragraph at lines 186--196
-\OMS/cmsy/m/n/10.95 ^^@\OML/cmm/m/it/10.95 registration\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 REGID; PRI; SURGDUR;[] SPECID;[] []; mss\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 OPROOMID; SHIFT; SPECID; DAY\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; surgeon\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 SRGID; SPECID; SHIFT\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; an\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ANID; SPECID; SHIFT\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; time\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 SHIFT; ST\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 :$ 
+Overfull \hbox (21.9409pt too wide) in paragraph at lines 143--144
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: Missing $ inserted.
-<inserted text> 
-                $
-l.197 :- registration(REGID,_
-                             ,_,_,_,_,_), #count{PRI,SRGID,ANID,OPROOMID,SHI...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: Double subscript.
-l.197 :- registration(REGID,_,_
-                               ,_,_,_,_), #count{PRI,SRGID,ANID,OPROOMID,SHI...
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: Double subscript.
-l.197 :- registration(REGID,_,_,_
-                                 ,_,_,_), #count{PRI,SRGID,ANID,OPROOMID,SHI...
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: Double subscript.
-l.197 :- registration(REGID,_,_,_,_
-                                   ,_,_), #count{PRI,SRGID,ANID,OPROOMID,SHI...
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: Double subscript.
-l.197 :- registration(REGID,_,_,_,_,_
-                                     ,_), #count{PRI,SRGID,ANID,OPROOMID,SHI...
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: Double subscript.
-l.197 :- registration(REGID,_,_,_,_,_,_
-                                       ), #count{PRI,SRGID,ANID,OPROOMID,SHI...
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:197: You can't use `macro parameter character #' in math mode.
-l.197 :- registration(REGID,_,_,_,_,_,_), #
-                                           count{PRI,SRGID,ANID,OPROOMID,SHI...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:198: Missing $ inserted.
-<inserted text> 
-                $
-l.198 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (346.26872pt too wide) in paragraph at lines 197--198
-[]\OT1/cmr/m/n/10.95 :- registration(REGID,$[][][][][][]\OML/cmm/m/it/10.95 ; count[] >
+Overfull \hbox (21.9409pt too wide) in paragraph at lines 171--172
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:204: Missing $ inserted.
-<inserted text> 
-                $
-l.204       registration(REGID,PRI,SURGDUR,_
-                                            ,SPECID,_,_),
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:204: Double subscript.
-l.204 ...gistration(REGID,PRI,SURGDUR,_,SPECID,_,_
-                                                  ),
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:210: Extra }, or forgotten $.
-l.210 }
-        1 :- registration(REGID,_,_,_,_,_,_).
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:210: Double subscript.
-l.210 } 1 :- registration(REGID,_,_
-                                   ,_,_,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:210: Double subscript.
-l.210 } 1 :- registration(REGID,_,_,_
-                                     ,_,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:210: Double subscript.
-l.210 } 1 :- registration(REGID,_,_,_,_
-                                       ,_,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:210: Double subscript.
-l.210 } 1 :- registration(REGID,_,_,_,_,_
-                                         ,_).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:210: Double subscript.
-l.210 } 1 :- registration(REGID,_,_,_,_,_,_
-                                           ).
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:211: Missing $ inserted.
-<inserted text> 
-                $
-l.211 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (783.71527pt too wide) in paragraph at lines 202--211
-[]\OT1/cmr/m/n/10.95 0  x(REGID,PRI,SRGID,ANID,OPROOM,SHIFT,DAY,ST) : registration(REGID,PRI,SURGDUR,$[]\OML/cmm/m/it/10.95 SPECID;[] []; mss\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 OPROOM; SHIFT; SPECID; DAY\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; surgeon\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 SRGID; SPECID; SHIFT\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; an\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ANID; SPECID; SHIFT\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; time\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 SHIFT; ST\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; ST \OT1/cmr/m/n/10.95 +
+Overfull \hbox (15.37083pt too wide) in paragraph at lines 195--196
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:212: Missing $ inserted.
-<inserted text> 
-                $
-l.212 ...tory github nella cartella /Optimization_
-                                                  Explained ci sono delle gr...
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:213: Missing $ inserted.
-<inserted text> 
-                $
-l.213 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (336.10349pt too wide) in paragraph at lines 212--213
-[]\OT1/cmr/m/n/10.95 questo perch^^Re, come si pu^^Ro vedere nella mia repos-i-tory github nella cartella /Optimization$[]\OML/cmm/m/it/10.95 xplainedcisonodellegrossedifferenzediperformancetraquesti\OT1/cmr/m/n/10.95 3\OML/cmm/m/it/10.95 approcci$ 
+Overfull \hbox (15.37083pt too wide) in paragraph at lines 196--197
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: You can't use `macro parameter character #' in horizontal mode.
-l.224 :- proteina(P1), #
-                        count {P1 : scegli(P1,_,_,_)} > 1.
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+<../Results/graphs/cost_comparison_heuristic.png, id=115, 1148.3703pt x 1147.8885pt>
+File: ../Results/graphs/cost_comparison_heuristic.png Graphic file (type png)
+<use ../Results/graphs/cost_comparison_heuristic.png>
+Package pdftex.def Info: ../Results/graphs/cost_comparison_heuristic.png  used on input line 211.
+(pdftex.def)             Requested size: 376.42575pt x 376.26465pt.
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Missing $ inserted.
-<inserted text> 
-                $
-l.224 :- proteina(P1), #count {P1 : scegli(P1,_
-                                               ,_,_)} > 1.
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Double subscript.
-l.224 :- proteina(P1), #count {P1 : scegli(P1,_,_
-                                                 ,_)} > 1.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Double subscript.
-l.224 ...roteina(P1), #count {P1 : scegli(P1,_,_,_
-                                                  )} > 1.
-I treat `x_1_2' essentially like `x_1{}_2'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:224: Extra }, or forgotten $.
-l.224 ...teina(P1), #count {P1 : scegli(P1,_,_,_)}
-                                                   > 1.
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:225: Missing $ inserted.
-<inserted text> 
-                $
-l.225 
-      
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[2]
-
-LaTeX Warning: File `cost_comparison_original_vs_optimized.png' not found on input line 280.
-
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:280: Package pdftex.def Error: File `cost_comparison_original_vs_optimized.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.280 ...ost_comparison_original_vs_optimized.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[3]
-
-LaTeX Warning: Reference `fig:cost_orig_opt' on page 4 undefined on input line 285.
-
-
-LaTeX Warning: File `cost_comparison_heuristic.png' not found on input line 289.
-
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:289: Package pdftex.def Error: File `cost_comparison_heuristic.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.289 ...textwidth]{cost_comparison_heuristic.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [4]
-
-LaTeX Warning: Reference `fig:cost_heuristic' on page 5 undefined on input line 294.
-
-
-LaTeX Warning: File `time_comparison_original_vs_optimized.png' not found on input line 298.
-
-
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:298: Package pdftex.def Error: File `time_comparison_original_vs_optimized.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.298 ...ime_comparison_original_vs_optimized.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<../Results/graphs/cost_comparison_optimized_vs_optimized_heuristic.png, id=157, 1148.3703pt x 1147.8885pt>
+File: ../Results/graphs/cost_comparison_optimized_vs_optimized_heuristic.png Graphic file (type png)
+<use ../Results/graphs/cost_comparison_optimized_vs_optimized_heuristic.png>
+Package pdftex.def Info: ../Results/graphs/cost_comparison_optimized_vs_optimized_heuristic.png  used on input line 219.
+(pdftex.def)             Requested size: 376.42575pt x 376.26465pt.
 
 
+[5 <../Results/graphs/cost_comparison_heuristic.png>]
+<../Results/graphs/cost_comparison_original_vs_optimized.png, id=164, 1148.3703pt x 1147.6476pt>
+File: ../Results/graphs/cost_comparison_original_vs_optimized.png Graphic file (type png)
+<use ../Results/graphs/cost_comparison_original_vs_optimized.png>
+Package pdftex.def Info: ../Results/graphs/cost_comparison_original_vs_optimized.png  used on input line 227.
+(pdftex.def)             Requested size: 376.42575pt x 376.18568pt.
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[5]
-
-LaTeX Warning: Reference `fig:time_orig_opt' on page 6 undefined on input line 303.
+[6 <../Results/graphs/cost_comparison_optimized_vs_optimized_heuristic.png>]
+<../Results/graphs/cost_comparison_original_vs_original_heuristic.png, id=172, 1148.3703pt x 1147.8885pt>
+File: ../Results/graphs/cost_comparison_original_vs_original_heuristic.png Graphic file (type png)
+<use ../Results/graphs/cost_comparison_original_vs_original_heuristic.png>
+Package pdftex.def Info: ../Results/graphs/cost_comparison_original_vs_original_heuristic.png  used on input line 235.
+(pdftex.def)             Requested size: 376.42575pt x 376.26465pt.
 
 
-LaTeX Warning: File `time_comparison_heuristic.png' not found on input line 307.
+[7 <../Results/graphs/cost_comparison_original_vs_optimized.png>]
+<../Results/graphs/time_comparison_heuristic.png, id=179, 1149.093pt x 1147.8885pt>
+File: ../Results/graphs/time_comparison_heuristic.png Graphic file (type png)
+<use ../Results/graphs/time_comparison_heuristic.png>
+Package pdftex.def Info: ../Results/graphs/time_comparison_heuristic.png  used on input line 245.
+(pdftex.def)             Requested size: 376.42575pt x 376.03696pt.
 
 
-/home/ribben/Desktop/clingo/ORS/Report/Report.tex:307: Package pdftex.def Error: File `time_comparison_heuristic.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.307 ...textwidth]{time_comparison_heuristic.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+[8 <../Results/graphs/cost_comparison_original_vs_original_heuristic.png>]
+<../Results/graphs/time_comparison_optimized_vs_optimized_heuristic.png, id=186, 1149.093pt x 1147.8885pt>
+File: ../Results/graphs/time_comparison_optimized_vs_optimized_heuristic.png Graphic file (type png)
+<use ../Results/graphs/time_comparison_optimized_vs_optimized_heuristic.png>
+Package pdftex.def Info: ../Results/graphs/time_comparison_optimized_vs_optimized_heuristic.png  used on input line 253.
+(pdftex.def)             Requested size: 376.42575pt x 376.03696pt.
 
 
+[9 <../Results/graphs/time_comparison_heuristic.png>]
+<../Results/graphs/time_comparison_original_vs_optimized.png, id=193, 1149.093pt x 1147.6476pt>
+File: ../Results/graphs/time_comparison_original_vs_optimized.png Graphic file (type png)
+<use ../Results/graphs/time_comparison_original_vs_optimized.png>
+Package pdftex.def Info: ../Results/graphs/time_comparison_original_vs_optimized.png  used on input line 261.
+(pdftex.def)             Requested size: 376.42575pt x 375.95804pt.
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[6]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[7]
+[10 <../Results/graphs/time_comparison_optimized_vs_optimized_heuristic.png>]
+<../Results/graphs/time_comparison_original_vs_original_heuristic.png, id=200, 1149.093pt x 1147.8885pt>
+File: ../Results/graphs/time_comparison_original_vs_original_heuristic.png Graphic file (type png)
+<use ../Results/graphs/time_comparison_original_vs_original_heuristic.png>
+Package pdftex.def Info: ../Results/graphs/time_comparison_original_vs_original_heuristic.png  used on input line 269.
+(pdftex.def)             Requested size: 376.42575pt x 376.03696pt.
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+[11 <../Results/graphs/time_comparison_original_vs_optimized.png>]
 
-[8]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[9] (./Report.aux)
+[12 <../Results/graphs/time_comparison_original_vs_original_heuristic.png>] (./Report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `Report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  8F7415CC2F59BC7FCB04064CADCE9605;4897.
- )
-(\end occurred inside a group at level 4)
-
-### simple group (level 4) entered at line 224 ({)
-### simple group (level 3) entered at line 202 ({)
-### simple group (level 2) entered at line 186 ({)
-### simple group (level 1) entered at line 128 ({)
-### bottom level 
+Package rerunfilecheck Info: File `Report.out' has not changed.
+(rerunfilecheck)             Checksum: 397CCCA4EAF0E5A1C695ABBDCDE0BA50;4863.
+ ) 
 Here is how much of TeX's memory you used:
- 15672 strings out of 474651
- 248683 string characters out of 5756723
- 674277 words of memory out of 5000000
- 38601 multiletter control sequences out of 15000+600000
- 565777 words of font info for 62 fonts, out of 8000000 for 9000
+ 15714 strings out of 474651
+ 245389 string characters out of 5756723
+ 868629 words of memory out of 5000000
+ 38610 multiletter control sequences out of 15000+600000
+ 562386 words of font info for 48 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 75i,12n,79p,633b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (10 pages, 168130 bytes).
+ 75i,6n,79p,573b,1393s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on Report.pdf (13 pages, 4775654 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 270 PDF objects out of 1000 (max. 8388607)
+ 220 compressed objects within 3 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 217 words of extra memory for PDF output out of 10000 (max. 10000000)
 
