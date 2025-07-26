@@ -8,8 +8,6 @@ clingo --mode=gringo 3.lp > out3
 grep -o 'scegli([^)]*)' out1 | sed 's/scegli(//;s/)//' | sort -t',' -k1,1 -k2,2 -k3,3 -k4,4 | sed 's/^/scegli(/;s/$/)/' > out1
 grep -o 'scegli([^)]*)' out2 | sed 's/scegli(//;s/)//' | sort -t',' -k1,1 -k2,2 -k3,3 -k4,4 | sed 's/^/scegli(/;s/$/)/' > out2
 grep -o 'scegli([^)]*)' out3 | sed 's/scegli(//;s/)//' | sort -t',' -k1,1 -k2,2 -k3,3 -k4,4 | sed 's/^/scegli(/;s/$/)/' > out3
-
-cd ..
 clear
 
 diff ./facile/out1 ./facile/out2
@@ -21,11 +19,13 @@ diff ./facile/out2 ./facile/out3
 
 
 echo "-------------- FIRST APPROACH ---------------"
-clingo 1.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+clingo 1.lp --stats=3 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
 echo "-------------- SECOND APPROACH ---------------"
-clingo 2.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+clingo 2.lp --stats=3 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
 echo "-------------- THIRD APPROACH ---------------"
-clingo 3.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+clingo 3.lp --stats=3 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+
+cd ..
 
 
 
