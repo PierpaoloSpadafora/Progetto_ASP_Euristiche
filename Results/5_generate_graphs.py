@@ -67,7 +67,7 @@ def create_cost_comparison_charts(df, encoding1, encoding2, title_prefix=""):
     if n_groups == 1:
         axes = axes.reshape(1, -1)
     
-    fig.suptitle(f'{title_prefix} - Confronto Costi (Lower is Better)', fontsize=16, fontweight='bold')
+    fig.suptitle(f'{title_prefix} - Cost (Lower is Better)', fontsize=16, fontweight='bold')
     
     # Schema colori basato sui tipi di encoding
     color_map = {
@@ -252,7 +252,7 @@ def create_time_comparison_chart(df, encoding1, encoding2, title_prefix=""):
     if n_groups == 1:
         axes = [axes]
     
-    fig.suptitle(f'{title_prefix} - Confronto Tempi di Esecuzione (Lower is Better)', fontsize=16, fontweight='bold')
+    fig.suptitle(f'{title_prefix} - Timing (Lower is Better)', fontsize=16, fontweight='bold')
     
     # Schema colori basato sui tipi di encoding
     color_map = {
