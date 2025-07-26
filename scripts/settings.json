@@ -1,8 +1,8 @@
 {
   "control_args": ["1", "--opt-mode=optN"],
-  "timeout_seconds": 10,
-  "base_encoding": "original_encoding_plus_heuristic.lp",
-  "input_file": "./input/days_2/input1.lp",
+  "timeout_seconds": 15,
+  "base_encoding": "original_encoding.lp",
+  "input_file": "./input/days_1/input1.lp",
   "heuristics_to_try_file": "0_heuristics_to_try.lp",
   "heuristics_file": "2_promising_ones.lp",
   "timings_output_dir": "../timings",

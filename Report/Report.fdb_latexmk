@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1753518637.22937 "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" "Report.pdf" "Report" 1753518637.79971 2
-  "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" 1753518636.20256 15648 a74d10161bcb6ea1949230789415bf35 ""
+["pdflatex"] 1753528093.37051 "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" "Report.pdf" "Report" 1753528093.82261 2
+  "/home/ribben/Desktop/clingo/ORS/Report/Report.tex" 1753528092.65758 17996 b795d08734c308d3a00f5a22ec577b25 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1742685315 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1742685315 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1742685315 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -31,6 +31,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1742685315 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1742685315 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1742685315 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1742685315 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1742685315 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1742685315 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
   "/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1742685315 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -109,11 +110,11 @@
   "/usr/share/texmf-dist/tex/latex/url/url.sty" 1742685315 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1742685315 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1742685315 42087 b0f9697c952c8f5a8eede4134282cb0d ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1743760648 5344687 b8cc3e41c7a56fde16a369954ea9cfec ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1743760631 2109598 f81bf64109054bdd816777d742d41f5a ""
-  "Report.aux" 1753518637.72439 4919 80c0faf829236d4ca1365679a4fc1711 "pdflatex"
-  "Report.out" 1753518637.72539 4912 ec05a37ac62e07f6d22486ffe1b3b073 "pdflatex"
-  "Report.tex" 1753518636.20256 15648 a74d10161bcb6ea1949230789415bf35 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1748461047 5344687 b8cc3e41c7a56fde16a369954ea9cfec ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1748461021 2109596 c1965511d20f3cf13aa15298bd3e9208 ""
+  "Report.aux" 1753528093.74024 4917 aa4f07f48ed11e914c7b0787d501393c "pdflatex"
+  "Report.out" 1753528093.74124 4897 8f7415cc2f59bc7fcb04064cadce9605 "pdflatex"
+  "Report.tex" 1753528092.65758 17996 b795d08734c308d3a00f5a22ec577b25 ""
   "cost_comparison_heuristic.png" 0 -1 0 ""
   "cost_comparison_original_vs_optimized.png" 0 -1 0 ""
   "time_comparison_heuristic.png" 0 -1 0 ""

@@ -100,17 +100,16 @@ The input dataset comprises 40 carefully selected problem instances spanning dif
 
 The initial analysis using the standard encoding approach revealed significant computational challenges for certain problem classes.
 For the primary test case (days_1/input1.lp), the baseline solver required approximately 10 seconds to identify the first answer set with cost [2,25], representing a local minimum.
-However, achieving global optimality (proving that 2,25 was in fact the optimum) required 175 seconds, highlighting the computational intensity of optimal solution discovery.
-
+However, achieving global optimality (proving that 2,25 was in fact the optimum) required 175 seconds, highlighting the computational intensity of optimal solution discovery.\\
 This performance profile is characteristic of complex combinatorial optimization problems where the search space contains multiple local optima and the solver must navigate through numerous potential solutions to confirm global optimality.
-qpuh
 \subsection{Heuristic Impact Assessment}
 
 \subsubsection{Individual Heuristic Performance}
 
-The evaluation of individual heuristics revealed varied performance characteristics across different optimization objectives. While most heuristics did not provide significant improvements in first answer set discovery time, several demonstrated remarkable effectiveness in accelerating global optimality confirmation.
+Sebbene la maggior parte delle euristiche non abbia fornito miglioramenti significativi nel tempo di individuazione del primo insieme di risposte, alcune hanno dimostrato una notevole efficacia nell'accelerare la conferma dell'ottimalità globale.
 
-The most successful individual heuristics achieved speedup factors ranging from 2.5 to 6.65 times faster than the baseline approach. This improvement primarily manifested in the global optimization phase rather than initial solution discovery, suggesting that heuristics are particularly effective at pruning suboptimal search branches during the refinement process.
+Le euristiche individuali di maggior successo hanno raggiunto fattori di accelerazione fino a 6,65 volte più veloci rispetto all'approccio di base. 
+Questo miglioramento si è manifestato principalmente nella fase di ottimizzazione globale piuttosto che nella scoperta della soluzione iniziale, suggerendo che le euristiche **potrebbero** essere particolarmente efficaci nel potare i rami di ricerca subottimali durante il processo di perfezionamento.
 
 \subsubsection{Heuristic Combination Analysis}
 
@@ -122,9 +121,95 @@ The systematic evaluation of heuristic combinations identified three particularl
 
 \textbf{Configuration 3: Heuristic 1} - As a single-heuristic approach, this configuration offered reliable performance improvements with minimal implementation complexity, making it suitable for scenarios where simplicity is prioritized.
 
-\subsection{Comprehensive Evaluation Results}
+% Euristica #1
+%   Penalizza fortemente l'assegnazione di un intervento 
+%   quando un chirurgo S ha già più di 2 interventi nello stesso turno SH del giorno D.
+#heuristic 
+    x(R,P,S,A,O,SH,D,ST) :  #count{R2 : x(R2,_,S,_,_,SH,D,_)} > 2. 
+[-12@6,sign]
 
-The comprehensive evaluation across all 40 input instances provided crucial insights into the generalizability of heuristic approaches. The analysis revealed that only four instances (10\% of the test set) allowed for global optimality discovery within the specified timeout period. However, in all cases where global optimality was achieved, heuristic-enhanced configurations consistently outperformed the baseline approach.
+
+% Euristica #11
+%   Favorisce massimamente (priorità più alta di tutti) l'assegnazione di 
+%   interventi di priorità 1 a chirurghi liberi.
+#heuristic 
+    x(R,P,S,A,O,SH,D,ST) :  surgeon(S,_,SH), 
+                            #count{R2 : x(R2,_,S,_,_,SH,D,_)} == 0,
+                            registration(R,1,_,_,_,_,_). 
+[15@8,true]
+
+
+% Euristica #2
+%   Penalizza l'assegnazione di un intervento breve (≤2 ore) nelle prime ore del turno (ST≤2) 
+%   quando esiste un intervento lungo (≥4 ore) non ancora schedulato.
+#heuristic 
+    x(R,P,S,A,O,SH,D,ST) :  registration(R,_,DUR,_,_,_,_), 
+                            DUR <= 2, ST <= 2, 
+                            registration(R2,_,DUR2,_,_,_,_), 
+                            DUR2 >= 4, 
+                            not x(R2,_,_,_,_,_,_,_). 
+[-8@5,sign]
+
+
+% Euristica #3
+%   Favorisce fortemente l'assegnazione di interventi a chirurghi S 
+%   che non hanno ancora interventi nel turno SH del giorno D.
+#heuristic 
+    x(R,P,S,A,O,SH,D,ST) :  surgeon(S,_,SH), 
+                            #count{R2 : x(R2,_,S,_,_,SH,D,_)} == 0. 
+[15@6,true]
+
+
+% Euristica #4
+%   Favorisce l'assegnazione di interventi consecutivi 
+%   (slot temporali adiacenti) allo stesso chirurgo S.
+#heuristic 
+    x(R,P,S,A,O,SH,D,ST) :  x(R2,_,S,_,_,SH,D,ST2), 
+                            R != R2, |ST - ST2| == 1. 
+[8@5,true]
+
+
+% Euristica #10
+%   Favorisce l'assegnazione di interventi di durata media (<4 ore) 
+%   a chirurghi ancora liberi nel turno.
+#heuristic
+    x(R,P,S,A,O,SH,D,ST) :  surgeon(S,_,SH),
+                            #count{R2 : x(R2,_,S,_,_,SH,D,_)} == 0,
+                            registration(R,_,DUR,_,_,_,_), DUR < 4.
+[10@6,true]
+
+
+\subsection{Optimized Encoding Perfomance}
+
+In fine ho modificato l'encoding originale modificando la choice rule e il vincolo:
+
+0 {
+    x(REGID,PRI,SRGID,ANID,OPROOMID,SHIFT,DAY,ST): 
+        ST+SURGDUR <= shift_duration
+    } 
+1 :- 
+registration(REGID,PRI,SURGDUR,_,SPECID,_,_),
+mss(OPROOMID,SHIFT,SPECID,DAY),
+surgeon(SRGID,SPECID,SHIFT),
+an(ANID,SPECID,SHIFT),
+time(SHIFT,ST).
+
+:- registration(REGID,_,_,_,_,_,_), #count{PRI,SRGID,ANID,OPROOMID,SHIFT,DAY,ST : x(REGID,PRI,SRGID,ANID,OPROOMID,SHIFT,DAY,ST)} > 1.
+
+
+cambiandolo in:
+
+0 { 
+    x(REGID,PRI,SRGID,ANID,OPROOM,SHIFT,DAY,ST) :
+      registration(REGID,PRI,SURGDUR,_,SPECID,_,_),
+      mss(OPROOM,SHIFT,SPECID,DAY),
+      surgeon(SRGID,SPECID,SHIFT),
+      an(ANID,SPECID,SHIFT),
+      time(SHIFT,ST),
+      ST+SURGDUR <= shift_duration
+} 1 :- registration(REGID,_,_,_,_,_,_).
+
+questo perchè 
 
 \begin{table}[H]
 \centering
