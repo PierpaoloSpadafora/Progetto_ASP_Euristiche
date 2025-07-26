@@ -10,6 +10,8 @@ clear
 
 diff out1 out2
 
+cd ..
+
 
 # --- STATS ---
 
@@ -19,9 +21,6 @@ clingo 1.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraint
 echo "-------------- SECOND APPROACH ---------------"
 clingo 2.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
 
-
-
-cd ..
 
 
 
@@ -57,18 +56,19 @@ mv optimized_sorted optimized_grounded
 
 clear
 
-
 diff original_grounded optimized_grounded
+cd ..
 
 
 # --- STATS ---
 
 echo "-----------------------------"
-clingo input_to_ground.lp original_to_ground.lp --time-limit=20 --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+clingo input_to_ground.lp original_to_ground.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
 echo "-----------------------------"
-clingo input_to_ground.lp optimized_to_ground.lp --time-limit=20 --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
+clingo input_to_ground.lp optimized_to_ground.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
 echo "-----------------------------"
-cd ..
+
+
 
 
 
