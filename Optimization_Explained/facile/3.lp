@@ -1,19 +1,17 @@
-% Definizione dei cibi
-% carne o pesce costano tanto, fingiamo di dover scegliere un pasto e limitarci ad una sola fonte proteica costosa
-cibo(latte). cibo(cetrioli). cibo(banana). 
+food(milk). food(cucumbers). food(banana). 
+food(cheese). food(bread). food(lettuce). 
 
-%cibo(parmigiano). cibo(pane). cibo(lattuga). 
+protein(tuna). protein(veal). 
+protein(salmon). protein(pork). 
 
-proteina(tonno). proteina(vitello). 
-%proteina(salmone). proteina(maiale). 
 
 % Scegli 1 proteina e 3 cibi
-1 { scegli(P1,F2,F3,F4) : 
-            proteina(P1),
-            cibo(F2), 
-            cibo(F3), 
-            cibo(F4)
+1 { choice(P1,F2,F3,F4) : 
+            protein(P1),
+            food(F2), 
+            food(F3), 
+            food(F4)
 } 1.
 
 
-#show scegli/4.
+#show choice/4.

@@ -20,13 +20,12 @@ diff ./facile/out2 ./facile/out3
 # --- STATS ---
 
 
-echo "-----------------------------"
+echo "-------------- FIRST APPROACH ---------------"
 clingo 1.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
-echo "-----------------------------"
+echo "-------------- SECOND APPROACH ---------------"
 clingo 2.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
-echo "-----------------------------"
+echo "-------------- THIRD APPROACH ---------------"
 clingo 3.lp --stats=2 | grep -E 'Rules|Atoms|Bodies|Choices|Conflicts|Constraints|Equivalences|Variables'
-echo "-----------------------------"
 
 
 
